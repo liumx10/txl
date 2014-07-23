@@ -1,0 +1,82 @@
+10
+
+dir
+62548
+http://tc-svn.tencent.com/rdm/rdm_tapd_rep/QingHua2014_proj/trunk/app/views
+http://tc-svn.tencent.com/rdm/rdm_tapd_rep
+
+
+
+2014-07-23T05:57:28.170205Z
+62527
+v_bolli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1ea69295-d3b5-d940-8677-efd7d9c5c1ef
+
+groups
+dir
+
+people
+dir
+
+debug
+dir
+
+admin
+dir
+
+home
+dir
+
+ratchet
+dir
+
+sign
+dir
+
+layouts
+dir
+
+users
+dir
+
+helpers
+dir
+
+weixin
+dir
+
+scaffolds
+dir
+
+txl
+dir
+
+login
+dir
+
+calendar
+dir
+
+identify
+dir
+
+errors
+dir
+
+elements
+dir
+

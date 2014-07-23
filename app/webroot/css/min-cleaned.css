@@ -1,0 +1,504 @@
+*{
+	margin:0;
+	padding:0
+}
+body,p,div,td,th,textarea,input,option {
+	font-family:Arial,sans-serif;
+	font-size:12px;
+	color:#333
+}
+a {
+	color:#055FC0;
+	text-decoration:none
+}
+h2 {
+	margin:0;
+	line-height:14px;
+	color:#805DAB;
+	font-size:14px
+}
+.clear {
+	clear:both
+}
+.contactListView 
+td {
+	vertical-align:top
+}
+#actionsTd 
+div#actionsContainer {
+	background-color:#f1f1f1;
+	position:relative;
+	z-index:4;
+	-moz-box-shadow:0 3px 3px #e0e0e0;
+	-webkit-box-shadow:0 3px 3px #e0e0e0;
+	box-shadow:0 3px 3px #A8A8A8
+}
+
+#groupsColumn {
+	width:174px;
+	border:1px solid #ccc;
+	border-right:none;
+	background-color:#f6f9fd
+}
+td#groupsColumn
+div#groupsPane {
+	width:174px;
+	overflow-y:auto;
+	overflow-x:hidden
+}
+
+#groupsColumn
+div.groupName {
+	padding:11px 0px 11px 0px;
+	height:22px;
+	cursor:pointer;
+	border-style:dotted;
+	border-width:1px;
+	border-color:rgb(98,102,138)
+}
+div.menu {
+	display:none;
+	background-color:rgb(68,100,117);
+	padding:5px 0px 5px 0px;
+	margin-left:-25px;
+}
+div.menu a{
+	color:#fff;
+}
+#groupsColumn div#createButtons
+div.createButton {
+	padding:30px 0 5px;
+	text-align:center;
+	width:86px;
+	float:left;
+	font-weight:bold;
+	color:#fff;
+	font-size:10px
+}
+#groupsColumn div#createButtons div.createButton
+a {
+	color:#717171
+}
+#groupsColumn div#createButtons div.createButton:hover {
+	cursor:pointer
+}
+#groupsColumn #createButtons div#addContactLink,#groupsColumn #createButtons
+div#addGroupLink {
+	border-left:none
+}
+#contactsContainer {
+	padding-left:0;
+	background-color:#fff;
+	min-height:600px;
+	border-left:1px solid #e0e0e0;
+	border-right:1px solid #e0e0e0;
+	position:relative;
+	z-index:2
+}
+.contactListView
+#upperActions {
+	padding:8px
+10px 8px 15px;
+	background-color:#D2E6F4
+}
+.contactListView #upperActions
+#search {
+	float:left
+}
+.contactListView #upperActions #search
+table {
+	border:1px
+solid #e3e3e3
+}
+.contactListView #upperActions #search table
+td {
+	background-color:#fff;
+	vertical-align:middle;
+	*vertical-align:bottom
+}
+.contactListView #upperActions #search table td
+input {
+	border:0px
+none;
+	height:18px;
+	width:150px
+}
+.contactListView #contactActions
+ul#bulkActions {
+	list-style:none
+}
+.contactListView #contactActions ul#bulkActions
+li.action {
+	float:left;
+	position:relative
+}
+.contactListView
+#contactActions {
+	padding:7px
+10px 7px 15px;
+	background-color:#fff;
+	border:1px
+solid #e3e3e3;
+	border-top:0px
+}
+.contactListView #contactActions
+a {
+	text-decoration:none
+}
+.contactListView #contactActions
+.disabled {
+	cursor:text;
+	color:#bebebe
+}
+.contactListView #contactActions
+a.borderLink {
+	padding-right:8px;
+	border-right:1px solid #ccc;
+	margin-right:6px
+}
+.contactListView #contactActions
+#groupPrint {
+	position:absolute;
+	top:27.5px;
+	left:0px;
+	z-index:2;
+	border:1px
+solid #ccc;
+	background-color:#fff;
+	max-height:225px;
+	width:180px;
+	overflow:auto
+}
+.contactListView #contactActions
+.actionBadge {
+	font:bold 11px Arial;
+	display:inline-block;
+	margin-left:4px;
+	padding:2px
+8px;
+	border-radius:8px;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	text-shadow:0px 1px 1px #666
+}
+.contactListView #contactActions
+.greyBadge {
+	background-color:#999;
+	color:#fff
+}
+.contactListView #contactActions
+.greenBadge {
+	background-color:#9ECB25;
+	color:#fff
+}
+.contactListView #contactsContainer #sz_contactsPane
+.contactInfo_phone {
+	width:165px
+}
+.contactListView #contactsContainer #sz_contactsPane
+.contactInfo_address {
+	width:165px
+}
+.contactListView #contactsContainer #sz_contactsPane
+.contactInfo_suggestions {
+	width:140px
+}
+body,p,div,td,th,textarea,input,option {
+	font-family:Arial,sans-serif;
+	font-size:12px;
+	color:#333
+}
+html {
+	border:0
+}
+body {
+	background:#fff;
+	margin:0;
+	padding:0
+}
+a {
+	color:#fff
+}
+textarea {
+	border:1px solid #999;
+	padding:2px
+}
+img {
+	border:0
+}
+table#pageLayout
+td.pageLayoutCell {
+	vertical-align:top;
+	background-color:white
+}
+#fixedLayout.plaxo table#pageLayout
+td.pageLayoutCell {
+	background-color:transparent
+}
+#simpleLayout
+p {
+	font-size:18px
+}
+div.clear {
+	clear:both;
+	font-size:1px;
+	line-height:0px;
+	height:0px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table.crop td.photo
+div.imgCrop_previewWrap {
+	border:1px
+solid #ccc
+}
+div#contactPhotoUploadLightbox table.photo_upload_table.crop td.content
+div.crop_text {
+	margin-top:15px
+}
+div#contactPhotoUploadLightbox
+div#previewDiv {
+	height:100px;
+	width:100px;
+	overflow:hidden
+}
+div#contactPhotoUploadLightbox
+a.fatButton {
+	font-size:16px;
+	padding:12px
+20px;
+	margin-right:10px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table tr.top
+td {
+	padding-top:40px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table
+td.photo {
+	padding-left:40px;
+	padding-right:40px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table
+td.content {
+	padding-right:40px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table td.button
+a.pButton {
+	margin-right:10px
+}
+div.upload_buttons
+input {
+	margin-right:10px
+}
+div#contactPhotoUploadLightbox table.photo_upload_table tr.bottom
+td.terms {
+	padding:30px
+40px 40px 40px;
+	line-height:18px;
+	color:#42515e;
+	border-top:1px solid #ccc
+}
+
+div.contact_container div
+span.email_mouseover {
+	color:#fff;
+	background-color:#3985D3;
+	font-weight:bold;
+	padding:0
+2px 1px 0
+}
+div.contact_container div.email_mouseover
+span.highlight {
+	padding:0px
+0px
+}
+div.plus {
+	float:left;
+	color:white;
+	font-weight:bold;
+	font-size:20px;
+	margin-left:10px
+}
+div.spacer {
+	height:20px;
+	width:50px;
+	float:left
+}
+div.name {
+	color:white;
+	font-weight:bold;
+	float:left
+}
+#groupsColumn {
+	background-color:#455360;
+	-webkit-border-radius:9px 0 0 9px;
+	-moz-border-radius:9px 0 0 9px;
+	border-radius:9px 0 0 9px
+}
+#groupsColumn div.groupName:first-child {
+	-webkit-border-radius:9px 0 0 0;
+	-moz-border-radius:9px 0 0 0;
+	border-radius:9px 0 0 0
+}
+#groupsColumn div#createButtons
+div.createButton {
+	font-size:9px;
+	font-family:Arial
+}
+#groupsColumn #createButtons div#addContactLink,#groupsColumn #createButtons
+div#addGroupLink {
+	border-left:none
+}
+#groupsColumn #createButtons
+div#addContactLink {
+	background:url(../img/new_contact.png) no-repeat center 5px
+}
+#groupsColumn #createButtons
+div#addGroupLink {
+	border-right:none;
+	background:url(../img/new_group.png) no-repeat center -12px
+}
+.contactListView
+#contactActions {
+	background-color:transparent;
+	margin:0
+15px;
+	padding:12px
+0 13px;
+	border-top:1px solid #5d6a75;
+	border-left:none;
+	border-right:none;
+	border-bottom:none
+}
+.contactListView #contactActions
+a {
+	font-size:11px;
+	font-weight:bold
+}
+.contactListView #contactActions>ul>li>a {
+	color:white
+}
+.contactListView #contactActions
+a.borderLink {
+	border:none;
+	padding:0;
+	margin:0
+}
+.contactListView #contactActions ul#bulkActions
+li.action {
+	border-right:1px solid #606c77;
+	padding:0
+16px
+}
+.contactListView #contactActions ul#bulkActions li.action:first-child {
+	padding-left:0
+}
+.contactListView td#actionsTd
+div#actionsContainer {
+	border-top:none;
+	background:#455360;
+	background:-moz-linear-gradient(top,#626E79 0%,#455360 34%,#455360 100%);
+	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#626E79),color-stop(34%,#455360),color-stop(100%,#455360));
+	background:-o-linear-gradient(top,#626E79 0%,#455360 34%,#455360 100%)
+}
+.contactListView td#actionsTd
+div#actionsContainer.rounded {
+	-webkit-border-radius:0 9px 0 0;
+	-moz-border-radius:0 9px 0 0;
+	border-radius:0 9px 0 0;
+	border-top:1px solid #ccc
+}
+.contactListView td#actionsTd
+div#actionsContainer.fixed {
+	padding-top:0
+}
+.contactListView td#actionsTd
+div#actionsContainer.fixed.rounded {
+	-webkit-border-radius:0;
+	-moz-border-radius:0;
+	border-radius:0;
+	border:none
+}
+.contactListView
+#upperActions {
+	background-color:transparent;
+	border:none;
+	padding:9px
+15px 10px
+}
+.contactListView #upperActions #search
+table {
+	border:1px
+solid #e3e3e3;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px
+}
+.contactListView #upperActions #search table
+td {
+	background-color:#fff;
+	vertical-align:middle
+}
+.contactListView #upperActions #search table td
+input {
+	border:0px
+none;
+	height:19px;
+	padding:3px 2px 2px 2px;
+	width:150px;
+	outline:0
+}
+.contactListView #upperActions
+#alpha {
+	float:right
+}
+td div#groupActionsContainer
+div#groupActions {
+	float:right;
+	width:439px;
+	padding-top:1px
+}
+.contactListView #contactActions
+#groupAdd {
+	top:27px;
+	left:0
+}
+.contactListView #contactActions #groupAdd ul
+li {
+	padding:3px
+8px;
+	border:1px
+solid #efefef
+}
+div.header {
+	background-color:#5c6874
+}
+.contactListView
+#contactsContainer {
+	border-bottom:1px solid #e0e0e0
+}
+.contactListView #contactsContainer,.contactListView
+table#rightTable {
+	-webkit-border-radius:0 9px 9px 0;
+	-moz-border-radius:0 9px 9px 0;
+	border-radius:0 9px 9px 0
+}
+td#groupsColumn
+div.fixed {
+	position:fixed;
+	top:0px
+}
+div#createGroupContainer {
+	padding:8px 0 10px 0;
+	border-top:1px solid #999;
+	background:#789CBE;
+	background: -moz-linear-gradient(top, #789CBE 0%, #8EB9E1 5%, #8EB9E1 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#789CBE), color-stop(5%,#8EB9E1), color-stop(100%,#8EB9E1));
+	background: -o-linear-gradient(top, #789CBE 0%,#8EB9E1 5%,#8EB9E1 100%);
+}
+#groupsColumn
+#createGroupText {
+	width:144px;
+	margin-left:10px
+}
+.selected {
+	background-color:rgb(37,50,68);
+}
