@@ -1,14 +1,14 @@
 10
 
 dir
-62548
+62568
 http://tc-svn.tencent.com/rdm/rdm_tapd_rep/QingHua2014_proj/trunk/app/webroot/js
 http://tc-svn.tencent.com/rdm/rdm_tapd_rep
 
 
 
-2014-07-23T05:57:28.170205Z
-62527
+2014-07-24T06:18:37.006324Z
+62568
 v_bolli
 
 
@@ -100,10 +100,10 @@ file
 
 
 
-2014-07-23T12:26:43.000000Z
-ba4ad5c14c08893de56a6aae4cccf36a
-2014-07-23T05:57:28.170205Z
-62527
+2014-07-24T02:57:59.000000Z
+df2f72f85184fd63e8cdc2a1eb3dfc98
+2014-07-23T14:00:14.468052Z
+62550
 v_bolli
 has-props
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-3648
+3540
 
 touchwipe.js
 file
@@ -338,10 +338,10 @@ file
 
 
 
-2014-07-23T12:26:43.000000Z
-e45f0966c4a6bdfad776cfdae709c3df
-2014-07-23T05:57:28.170205Z
-62527
+2014-07-24T06:19:12.000000Z
+9eb93b9673f8a31e1c64b90694dc7d49
+2014-07-24T06:18:37.006324Z
+62568
 v_bolli
 has-props
 
@@ -364,7 +364,7 @@ has-props
 
 
 
-4430
+4176
 
 bootstrap.min.js
 file

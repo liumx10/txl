@@ -1,26 +1,8 @@
-function showMenu(id,symbol) {
-	if(!e) var e = window.event;
-	e.cancleBubble = true;
-	if(e.stopPropagation) e.stopPropagation();
-	str = '#menu' + id;
-	if($(str).css('display') == 'none') {
-		$('.menu').slideUp();
-		$(str).slideDown();
-	}
-	else {
-		$(str).slideUp();
-	}
-}
 function uiContacts(data) {
 //remove all contacts and render from give data
 	contacts = JSON.parse(data);
 	panel = $('#contacts');
 	panel.empty();
-
-	headerStr = '\
-		<tr><td><input type="checkbox" style="display:none;"></td>\
-		<td>姓名</td><td>职位</td><td>手机</td><td>微信</td><td>电子邮件</td><td></td></tr>';
-	panel.append(headerStr);
 	for(var i = 0; i < contacts.length; i++) {
 		conStr = '\
 			<tr class="update">\
@@ -37,70 +19,88 @@ function uiContacts(data) {
 			contacts[i].wechat, contacts[i].email);
 		panel.append(conStr);
 	}
+	$('.ieditable').bind('input',function(){
+			$(this).parent().addClass('be_submit');});
 }
 
 function uiDepartment(data) {
-//remove all department and render from give data
-//auto select first department
-//data packaged into json
+//remove all departments use class groupName and render from give data
 	dataObject = JSON.parse(data);
 	departments = dataObject['dep'];
 	pid = dataObject['pid'];
-
-	panel = $('#groupsPane');
-	panel.empty();
-
-	parentStr = '<input id = "parent" type="hidden" value ="%d">';
-	parentStr = sprintf(parentStr, pid);
-	panel.append(parentStr);
+	actid = dataObject['actid'];
+	//set pid
+	$('#parent').val(pid);
+	//set departments and children
+	finalstr = '';
 	for(var i = 0; i < departments.length; i++) {
-		//departmentStr = sprintf(headStr,departments[i].id,departments[i].name);
-		departmentStr = "\
-			<li>\
-			 <a href='#' >%s</a>\
-			</li>";
-		departmentStr = sprintf(departmentStr,departments[i].name);
-		panel.append(departmentStr);
+		chi = '';
+		children = departments[i].children;//maybe empty
+		for(var ci = 0; ci < children.length; ci++) {
+			chi +='\
+				  <li>\
+				  <a href="#" onclick="clickDepartment(%d);enDepartment(%d,%d);return false;">%s</a>\
+				  </li>\
+				  ';
+			chi = sprintf(chi,children[ci].id,departments[i].id,children[ci].id,children[ci].name);
+		}
+		str = '\
+			  <li class="groupName" value="%d" style="display:none;">\
+			  <a onclick="clickDepartment(%d);return false;" href="#" data-toggle="collapse" data-target="#%d">\
+			  <i class="fa fa-fw fa-arrows-v"></i> %s<i class="fa fa-fw fa-caret-down"></i></a>\
+			  <ul id="%d" class="collapse">\
+			  %s\
+			  </ul>\
+			  </li>\
+			  ';
+		str = sprintf(str, departments[i].id, departments[i].id, 
+				departments[i].id, departments[i].name, departments[i].id, chi);
+		if(!chi) {
+			str = '\
+				  <li class="groupName" value="%d" style="display:none;">\
+				  <a onclick="clickDepartment(%d);return false;" href="#">%s</a>\
+				  </li>\
+				  ';
+			str = sprintf(str, departments[i].id, departments[i].id, departments[i].name);
+		}
+		finalstr += str;
 	}
+	//remove old departments
+	$('.groupName').hide('slow',function(){
+			$('.groupName').remove();
+			$('#functional').before(finalstr);
+			$('.groupName').show('slow');
+			$('.groupName').each( function(index){
+				if($(this).val()==actid)
+					$(this).children()[0].click();
+				});
+
+			});
 }
 
 function uiSingleContact() {
 	trStr = "\
-		<tr class='register'>\
-		<input type='hidden' value='none'>\
-		<td><input type='checkbox' class='cks'></td>\
-		<td contenteditable='true' class='ieditable'>xxx</td>\
-		<td contenteditable='true' class='ieditable'>xxxxx</td>\
-		<td contenteditable='true' class='ieditable'>xxxxxxxxxx</td>\
-		<td contenteditable='true' class='ieditable'>xxxx</td>\
-		<td contenteditable='true' class='ieditable'>xxx@xx.com</td>\
-		</tr>";
+			 <tr class='register'>\
+			 <input type='hidden' value='none'>\
+			 <td><input type='checkbox' class='cks'></td>\
+			 <td contenteditable='true' class='ieditable'>xxx</td>\
+			 <td contenteditable='true' class='ieditable'>xxxxx</td>\
+			 <td contenteditable='true' class='ieditable'>xxxxxxxxxx</td>\
+			 <td contenteditable='true' class='ieditable'>xxxx</td>\
+			 <td contenteditable='true' class='ieditable'>xxx@xx.com</td>\
+			 </tr>";
 	$("#contacts").append(trStr);
-	attach();
+	$('.ieditable').bind('input',function(){
+			$(this).parent().addClass('be_submit');});
 }
 function uiSingleDepartment(data,DepName) {
 	id = data;
-	oldHeight = $('#groupsPane').height(); 
-	$('#groupsPane').height(oldHeight + 45); 
-	headStr = '\
-			  <div onclick="select(this.id);" class="groupName" id="%d">\
-			  <div onclick="showMenu(this.parentNode.id, this);" class="plus">+</div>\
-			  <div class="spacer"></div>\
-			  <div class="name">%s</div></div>';
-	departmentStr = sprintf(headStr,id,DepName);
-	departmentStr += sprintf('<div class="menu" id="menu%d">',id);
-	departmentStr += '<ul>';
-	departmentStr += "\
-					  <li style='display:inline;margin:0px 0px 0px 20px;'>\
-					  <a onclick='rmDepartment(this.parentNode.parentNode.parentNode.id);return false;' href='#' >删除</a>\
-					  </li>\
-					  <li style='display:inline;margin:0px 0px 0px 20px;'>\
-					  <a onclick='enDepartment(this.parentNode.parentNode.parentNode.id);return false;' href='#' >进入</a>\
-					  </li>\
-					  <li style='display:inline;margin:0px 0px 0px 20px;'>\
-					  <a onclick='rnDepartment(this.parentNode.parentNode.parentNode.id);return false;' href='#' >重命名</a>\
-					  </li>";
-	departmentStr += '</ul>';
-	departmentStr += '</div>';
-	$('#groupsPane').append(departmentStr);
+	str = '\
+		  <li class="groupName" value="%d" style="display:none;">\
+		  <a onclick="clickDepartment(%d);return false;" href="#">%s</a>\
+		  </li>\
+		  ';
+	str = sprintf(str, id, id, DepName);
+	$('#functional').before(str);
+	$('.groupName').show('slow');
 }

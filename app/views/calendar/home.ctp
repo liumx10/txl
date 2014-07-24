@@ -14,7 +14,11 @@
 		day = $('#day').val();
 
 		edit = function edit(){
-			$("#create_memo").slideDown();
+			if (document.getElementById('create_memo').style.display == 'none'){
+				$("#create_memo").slideDown();
+			}else{
+				$("#create_memo").slideUp();
+			}
 		}
 		cancel = function cancel(){
 			$("#memo").hide();
@@ -172,7 +176,7 @@
 		<span class="tab-label">Home</span>
 	</a>
 </nav>
-<body bgcolor="gray" class="content" onload="init()">
+<body onload="init()" style="overflow:auto">
 	<div id="calendar">
 		<table border='0' width="100%" height="54px" style="table-layout:fixed;">
 			<tr bgcolor="#808080"> 
@@ -218,7 +222,7 @@
 				<input type="text" placeholder="null" id="edit_place"/>
 			</div>
 			<textarea rows="5" id="edit_memo"></textarea>
-			<button class="btn btn-positive btn-block" onclick="mysubmit()">提交</button>
+			<button class="btn btn-positive btn-block" style="border:#C0C0C0;background-color:#C0C0C0" onclick="mysubmit()">提交</button>
 		</form>
 		<button class="btn btn btn-block" onclick="cancel()" style="border:#C0C0C0;background-color:#C0C0C0" >返回</button>
 

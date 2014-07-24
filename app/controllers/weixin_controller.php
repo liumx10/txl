@@ -63,25 +63,24 @@ class WeixinController extends AppController {
 		$this->redirect("http://203.195.150.253/txl/index");
 	}
 	function send_notice() {
-		echo $this->request->data;
-		/*$this->request->input('json_decode');
-		$ems_id = $this->request->data[''];
-		$content = $this->request->data[''];
-		foreach ($ems_id as $em_id) {
-			$em = $this->Employee->get_employee($em_id);
+		$this->autoRender = false;
+		$em_ids = json_decode($this->data['mail']['ids']);
+		$content = $this->data['mail']['info'];
+		foreach ($em_ids as $em_id) {
+			$em  = $this->Employee->get_employee($em_id);
 			$cmp_id = $em['com_id'];
 			$openid = $em['openid'];
 			$options = $this->get_wechat_options($cmp_id);
 			$weObj = new Wechat($options);
 			$data = array(
-				"touser"=>$openid,
-				"msgtype"=>"text",
-				"text"=>array(
-				"content"=>$content,//date(DATE_RFC2822),
+					"touser"=>$openid,
+					"msgtype"=>"text",
+					"text"=>array(
+					"content"=>$content,//date(DATE_RFC2822),
 				),
 			);
 			$weObj->sendCustomMessage($data);
-		}*/
+		}
 	}
 	function get_wechat_options($com_id){
 		$com = $this->Company->get_by_id($com_id);

@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 71
-/rdm/rdm_tapd_rep/!svn/ver/62480/QingHua2014_proj/trunk/app/webroot/img
+/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/webroot/img
 END
 test-error-icon.png
 K 25
@@ -14,6 +14,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 80
 /rdm/rdm_tapd_rep/!svn/ver/62108/QingHua2014_proj/trunk/app/webroot/img/logo.png
+END
+message
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/webroot/img/message
 END
 glyphicons-halflings-white.png
 K 25
@@ -39,17 +45,17 @@ svn:wc:ra_dav:version-url
 V 85
 /rdm/rdm_tapd_rep/!svn/ver/62448/QingHua2014_proj/trunk/app/webroot/img/new_group.png
 END
-test-skip-icon.png
-K 25
-svn:wc:ra_dav:version-url
-V 90
-/rdm/rdm_tapd_rep/!svn/ver/61611/QingHua2014_proj/trunk/app/webroot/img/test-skip-icon.png
-END
 test-pass-icon.png
 K 25
 svn:wc:ra_dav:version-url
 V 90
 /rdm/rdm_tapd_rep/!svn/ver/61611/QingHua2014_proj/trunk/app/webroot/img/test-pass-icon.png
+END
+test-skip-icon.png
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/rdm/rdm_tapd_rep/!svn/ver/61611/QingHua2014_proj/trunk/app/webroot/img/test-skip-icon.png
 END
 memo
 K 25
@@ -81,17 +87,17 @@ svn:wc:ra_dav:version-url
 V 86
 /rdm/rdm_tapd_rep/!svn/ver/61611/QingHua2014_proj/trunk/app/webroot/img/cake.power.gif
 END
-txl
-K 25
-svn:wc:ra_dav:version-url
-V 75
-/rdm/rdm_tapd_rep/!svn/ver/62480/QingHua2014_proj/trunk/app/webroot/img/txl
-END
 glyphicons-halflings.png
 K 25
 svn:wc:ra_dav:version-url
 V 96
 /rdm/rdm_tapd_rep/!svn/ver/61802/QingHua2014_proj/trunk/app/webroot/img/glyphicons-halflings.png
+END
+txl
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/rdm/rdm_tapd_rep/!svn/ver/62480/QingHua2014_proj/trunk/app/webroot/img/txl
 END
 video-preview.png
 K 25
@@ -110,4 +116,16 @@ K 25
 svn:wc:ra_dav:version-url
 V 79
 /rdm/rdm_tapd_rep/!svn/ver/62480/QingHua2014_proj/trunk/app/webroot/img/setting
+END
+telphone
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/webroot/img/telphone
+END
+remind
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/webroot/img/remind
 END

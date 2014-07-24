@@ -108,7 +108,7 @@ class TxlController extends AppController{
 
 	function get_openid(){
 		return $this->Session->read('openid');
-		// 		return 1;
+	//	return 1;
 	}
 
 	function edit(){
