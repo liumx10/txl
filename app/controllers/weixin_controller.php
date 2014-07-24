@@ -6,7 +6,7 @@ class WeixinController extends AppController {
 	var $name = "Weixin";
 	var $uses = array('Company', 'Employee');
 	function index($com_id) {
-		$options = get_wechat_options($com_id);
+		$options = $this->get_wechat_options($com_id);
 		$weObj = new Wechat($options);
 		$weObj->valid();
 		$type = $weObj->getRev()->getRevType();
@@ -37,9 +37,10 @@ class WeixinController extends AppController {
 		}
 	}
 	function create_menu($com_id) {
-		$options = get_wechat_options($com_id);
+		$options = $this->get_wechat_options($com_id);
+		var_dump($options);
 		$weObj = new Wechat($options);
-		$url = $weObj->getOauthRedirect('http://203.195.150.253/weixin/set_openidi/'.$cmp_id.'/txl', 's1', 'snsapi_base');
+		$url = $weObj->getOauthRedirect('http://203.195.150.253/weixin/set_openid/'.$com_id, 's1', 'snsapi_base');
 		//$sign_url = $weObj->getOauthRedirect('http://203.195.150.253/weixin/set_openid/sign', 's2', 'snsapi_base');
 		$menu =  array(
 				"button"=>
@@ -54,30 +55,32 @@ class WeixinController extends AppController {
 		$this->autoRender = false;
 	}
 	function set_openid($com_id, $redirect) {
-		$options = get_wechat_options($com_id);
+		$options = $this->get_wechat_options($com_id);
 		$weObj = new Wechat($options);
 		$access_token = $weObj->getOauthAccessToken();
 		$this->Session->write('openid', $access_token['openid']);
 		$this->Session->write('com_id', $com_id);
-		if ($redirect == 'txl') {
-			$this->redirect("http://203.195.150.253/txl");
-		} else {
-			$this->redirect("http://203.195.150.253/sign/sign");
-		}
+		$this->redirect("http://203.195.150.253/txl/index");
 	}
-	function send_notice($openid, $content) {
-		$em = $this->Employee->get_by_openid($openid);
-		$cmp_id = $em['com_id'];
-		$options = get_wechat_options($cmp_id);
-		$weObj = new Wechat($options);
-		$data = array(
+	function send_notice() {
+		$this->request->input('json_decode');
+		$ems_id = $this->request->data[''];
+		$content = $this->request->data[''];
+		foreach ($ems_id as $em_id) {
+			$em = $this->Employee->get_employee($em_id);
+			$cmp_id = $em['com_id'];
+			$openid = $em['openid'];
+			$options = $this->get_wechat_options($cmp_id);
+			$weObj = new Wechat($options);
+			$data = array(
 				"touser"=>$openid,
 				"msgtype"=>"text",
 				"text"=>array(
 				"content"=>$content,//date(DATE_RFC2822),
-			),
-		);
-		$weObj->sendCustomMessage($data);
+				),
+			);
+			$weObj->sendCustomMessage($data);
+		}
 	}
 	function get_wechat_options($com_id){
 		$com = $this->Company->get_by_id($com_id);

@@ -91,32 +91,45 @@
 			aim_y = select_y.val();
 			aim_m = select_m.val();
 			
-			format_date.setYear(aim_y);
-			format_date.setMonth(aim_m-1);
-			format_date.setDate(1);
+			var aim = {};
+			aim["data[Calendar][year]"] = aim_y;
+			aim["data[Calendar][month]"] = aim_m;
+			$.ajax({type:'POST', url:'get_memo', data:aim,
+				success: function(data, status){
+					var events = JSON.parse(data);
+
+					format_date.setYear(aim_y);
+					format_date.setMonth(aim_m-1);
+					format_date.setDate(1);
 			
-			monthdays = get_days(aim_y, aim_m) ;
-			weekday = format_date.getDay();
-			weeks = Math.ceil((monthdays+ weekday)/7);
-
-			val = new Array;
-			for (var i=0; i<weekday; i++){
-				val.push("");
-			}
-			for (var i=1; i<=monthdays; i++){
-				val.push(i);
-			}
-			while (val.length < weeks*7){
-				val.push("");
-			}
-
-			for (var i=0; i<weeks; i++){
-				tr = $("<tr></tr>")
-				for (var j=0; j<7; j++){
-					tr.append("<td align='center' onclick='show_memos("+val[i*7+j]+")'>"+val[i*7+j]+"</td>");
+					monthdays = get_days(aim_y, aim_m) ;
+					weekday = format_date.getDay();
+					weeks = Math.ceil((monthdays+ weekday)/7);
+		
+					val = new Array;
+					for (var i=0; i<weekday; i++){
+						val.push("");
+					}
+					for (var i=1; i<=monthdays; i++){
+						val.push(i);
+					}
+					while (val.length < weeks*7){
+						val.push("");
+					}
+		
+					for (var i=0; i<weeks; i++){
+						tr = $("<tr></tr>")
+						for (var j=0; j<7; j++){
+							td = $('<td onclick="show_memos('+val[i*7+j]+')">'+val[i*7+j]+"</td>");
+							if (events[val[7*i+j]] == 1){
+								td.append("<img src='../../img/setting' height='13px' width='13px'/>");
+							}
+							tr.append(td);
+						}
+						$("#calendar_table").append(tr);
+					}
 				}
-				$("#calendar_table").append(tr);
-			}
+			});
 		}
 
 		show_memos = function show_memos(i){
@@ -133,7 +146,6 @@
 			$.ajax({type:"POST", url:$("#get_info_url").val(), data:datastr,
 					success: function(data, status){
 						var memos_info = JSON.parse(data);
-
 						$.each(memos_info, function(key, value){
 							var p = $("<p>" + value['Calendar']['memo'] + '</p>')
 							var li = $("<li class='table-view-cell'></li>");
@@ -146,14 +158,23 @@
 					}
 			});
 		}
+		
+		add = function add(){
+			$("#select_y").val("2015");
+		}
 
 	});
 </script>
 
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">  
+<nav class="bar bar-tab">
+	<a class="tab-item" href=<?php echo $this->Html->url(array('controller'=>'home', 'action'=>'home')); ?>>
+		<span class="icon icon-home"></span>
+		<span class="tab-label">Home</span>
+	</a>
+</nav>
 <body bgcolor="gray" class="content" onload="init()">
 	<div id="calendar">
-		<table border='0' width="100%" height="13%" style="table-layout:fixed;">
+		<table border='0' width="100%" height="54px" style="table-layout:fixed;">
 			<tr bgcolor="#808080"> 
 		        <th colspan='7' style="padding-left:50px;"> 
 		            <div id="year_select" > </div>
@@ -163,29 +184,29 @@
 		        </th> 
 		    </tr> 
 		</table>
-		<table bgcolor="#F0F0F0" border='0' width="100%" height="10%" style="table-layout:fixed;"> 
+		<table bgcolor="#F0F0F0" border='0' width="100%" height="44px" style="table-layout:fixed; margin-left:2px"> 
 		    <tr  style="font-size:0.8em; font-weight:bold;"> 
-		        <td align='center'>Sun</td> 
-		        <td align='center'>Mon</td> 
-		        <td align='center'>Tue</td> 
-		        <td align='center'>Wed</td> 
-		        <td align='center'>Thu</td> 
-		        <td align='center'>Fri</td> 
-		        <td align='center'>Sat</td> 
+		        <td >Sun</td> 
+		        <td >Mon</td> 
+		        <td >Tue</td> 
+		        <td >Wed</td> 
+		        <td >Thu</td> 
+		        <td >Fri</td> 
+		        <td >Sat</td> 
 		    </tr > 
 		</table>
-		<table id="calendar_table" gcolor="#F0F0F0" border='0' width="100%" height="60%" style="table-layout:fixed;"> 
+		<table id="calendar_table" gcolor="#F0F0F0" border='0' width="100%" height="50%" style="table-layout:fixed; margin-left:2px"> 
 		</table>
 		<br />
 		<label style="margin-left:8px">点击日期可编辑备忘录</label>
 	</div>
 	<ul id="memo" style="display:none; border-top:0px;" class="table-view content"> 
-		<li style="background-color:#888;  height:14%; padding:8%"
+		<li style="background-color:#C0C0C0;  height:14%; padding:8%"
 			id="memo_header" class="table-view-cell">
 		</li>
 		<div id = "memos">
 		</div>
-		<button class="btn btn-block" onclick="edit()">新建</button>
+		<button class="btn btn-block" onclick="edit()" style="border:#C0C0C0; background-color:#C0C0C0" >新建</button>
 		<form id = "create_memo" style="display:none">
 			<div class="input-row">
 				<label>时间</label>
@@ -197,10 +218,12 @@
 				<input type="text" placeholder="null" id="edit_place"/>
 			</div>
 			<textarea rows="5" id="edit_memo"></textarea>
-			<button class="btn btn-block" onclick="mysubmit()">提交</button>
+			<button class="btn btn-positive btn-block" onclick="mysubmit()">提交</button>
 		</form>
-		<button class="btn btn-block" onclick="cancel()">返回</button>
+		<button class="btn btn btn-block" onclick="cancel()" style="border:#C0C0C0;background-color:#C0C0C0" >返回</button>
+
 	</ul>
+	
 </body>
 
 <input id="year" value=<?php echo $year; ?> type="hidden" />
