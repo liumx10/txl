@@ -63,7 +63,8 @@ class WeixinController extends AppController {
 		$this->redirect("http://203.195.150.253/txl/index");
 	}
 	function send_notice() {
-		$this->request->input('json_decode');
+		echo $this->request->data;
+		/*$this->request->input('json_decode');
 		$ems_id = $this->request->data[''];
 		$content = $this->request->data[''];
 		foreach ($ems_id as $em_id) {
@@ -80,7 +81,7 @@ class WeixinController extends AppController {
 				),
 			);
 			$weObj->sendCustomMessage($data);
-		}
+		}*/
 	}
 	function get_wechat_options($com_id){
 		$com = $this->Company->get_by_id($com_id);
