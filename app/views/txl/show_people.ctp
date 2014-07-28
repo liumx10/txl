@@ -115,14 +115,6 @@
 >						</a>
 					  <?php } ?>
 
-					  <a class="item-link" href=<?php echo $this->Html->url(
-				              array( "controller" => "txl",
-				                     "action" => "show_group"));
-				              ?>
-				      >
-				          <span class="icon icon-pages"></span>
-					  <span class="tabbar-label">Company</span>
-		 		          </a>
 				    </div>
 				</div>
 	

@@ -46,25 +46,17 @@
     <div class="view view-main" id="view-main navbar-through">
 
       <div class="navbar">
-        <div class="navbar-inner" style="-webkit-box-pack:justify">
-            <a href=<?php echo '#'.'tab1'.$department['id']; ?> class="tab-link active" style="margin-right:70px;">
-	        部门联系人
-            </a>
-            <a href=<?php echo '#'.'tab2'.$department['id']; ?> class="tab-link">
-	        下属部门
-            </a>
+		<div class="navbar-inner" style="-webkit-box-pack:justify">
+			<div class="left"></div>
+			<div class="center"><?php echo $department['name']; ?></div>
         </div>
       </div>
       
       <div class="pages navbar-through">
         <div data-page="index" class="page toolbar-fixed">
           <div class="page-content">
-            <div class="tabs-animated-wrap">
-              <div class="tabs">
-                <div id=<?php echo 'tab1'.$department['id']; ?> class='tab active'>
-                  <div class="list-block media-list contacts-list searchbar-found">
-                    <ul>
-
+             <div class="list-block media-list contacts-list searchbar-found">
+                <ul>
                     <?php foreach ($people as $person): ?>
                       <li class="contact-item">
                         <a href=<?php echo $this->Html->url(array('controller'=>'txl', 'action'=>'show_people', 
@@ -96,41 +88,37 @@
                         </a>
                       </li>
                       <?php endforeach; ?>
-                    </ul>
-                  </div> 
-                </div>
-
-                <div id= <?php echo 'tab2'.$department['id']; ?> class='tab'>
-                  <div class="list-block media-list contacts-list searchbar-found">
-                    <ul>
-                      <?php foreach ($groups as $group): ?>
-                        <li class="contact-item">
+					  <?php foreach ($groups as $group): ?>
+                      <li class="contact-item">
                           <a href=<?php echo $this->Html->url(
                               array('controller' => 'txl', 'action' => 'show_group', $group['id']));?>
                               class="item-link"
                           >
-                            <div class="item-content">
-                              <div class="item-inner">
-                                <div class="item-title-row">
-                                  <?php echo $group['name']; ?>
-                                </div>
-                              </div>
+							<div class="item-content">
+								<div class="item-media">
+									<img class="media-object pull-left" src=<?php echo $this->webroot.'headimage/company.head'; ?>
+										width=40px height=40px />									
+								</div>
+		
+                                <div class="item-inner"> 
+			                       <div class="item-title-row">
+				                      <?php echo $group['name']; ?>
+					               </div>
+						        </div>
                             </div>
                           </a>
-                        </li>
-                      <?php endforeach; ?>
+                      </li>
+					  <?php endforeach; ?>
+
                     </ul>
-                  </div>                
-                </div>
-              </div>
-            </div>
+                </div>                
           </div>
 
           <div class="toolbar tabbar tabbar-labels">
             <div class="toolbar-inner">
-              <a class="item-link back" >
-                  <span class="icon icon-left" style="color:#A0A0A0"></span>
-		  <span class="tabbar-label">Back</span>
+				<a class="item-link back external" href=<?php echo $this->Html->url(array('controller'=>'home', 'action'=>'home')); ?>>
+                  <i class="icon icon-left" style="color:#A0A0A0"></i>
+				  <span class="tabbar-label">Back</span>
               </a>
 
               <!-- Search people by name -->
@@ -140,35 +128,25 @@
                              ));
                       ?>
               >
-                  <span class="icon icon-search"></span>
- 		  <span class="tabbar-label">Search</span>
+                  <i class="icon icon-search"></i>
+				  <span class="tabbar-label">Search</span>
              </a>
           
-              <a class="item-link" href=<?php echo $this->Html->url(
+              <a class="item-link external" href=<?php echo $this->Html->url(
                       array( "controller" => "home",
                               "action" => "home"));   
-                              ?>
+							  ?>
               >
                   <span class="icon icon-home"></span>
- 		  <span class="tabbar-label">Home</span>
+		 		  <span class="tabbar-label">Home</span>
              </a>
         
               <a class="item-link" href=<?php 
                 echo $this->Html->url(array('action'=>'show_people', $myid));?>
               >
- 	         <span class="icon icon-person"></span>	 
-		 <span class="tabbar-label">Myself</span>
-
+				 <span class="icon icon-person"></span>	 
+				 <span class="tabbar-label">Myself</span>
               </a>
-
-              <a class="item-link" href=<?php echo $this->Html->url(
-                        array( "controller" => "txl",
-                               "action" => "show_group"));
-                        ?>
-                >
-                 <span class="icon icon-pages"></span>
- 	         <span class="tabbar-label">Company</span>
-             </a>
             </div>
           </div>
         </div>

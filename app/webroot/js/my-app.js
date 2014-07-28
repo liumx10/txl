@@ -98,7 +98,7 @@ var create_select = function create_select(){
 			select_m.append(option);
 		}
 
-		select_d = $('<select name="data[Calendar][month]"</select>');
+		select_d = $('<select name="data[Calendar][day]"</select>');
 		for (var i=1; i<32; i++){
 			option = $('<option value=' + i + '>' + i +'日</option>');
 			select_d.append(option);

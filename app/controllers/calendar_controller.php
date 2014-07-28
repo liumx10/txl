@@ -42,7 +42,10 @@ class CalendarController extends AppController{
 	}
 
 	function save_info(){
-		$date = $this->data['Calendar']['date'];
+		if ($date = $this->data['Calendar']['date'] == null){
+			$date = $this->data['Calendar']['year'].'-'.$this->data['Calendar']['month'].'-'.$this->data['Calendar']['day']; 
+		}
+		$this->log('date: '.$date, LOG_DEBUG);
 		$hour = $this->data['Calendar']['hour'];
 		$minute = $this->data['Calendar']['minute'];
 

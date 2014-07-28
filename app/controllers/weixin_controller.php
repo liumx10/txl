@@ -91,26 +91,26 @@ class WeixinController extends AppController {
 		);
 	}
 	function test() {
-require 'PHPMailerAutoload.php';
+                $this->autoRender = false;
+require_once 'mail/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.qq.com';  // Specify main and backup SMTP servers
+$mail->Host = 'smtp.163.com';  // Specify main and backup SMTP servers
+$mail->Port = 25;
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = '1016749531@qq.com';                 // SMTP username
-$mail->Password = 'jayjay3821676';                           // SMTP password
+$mail->Username = 'thu2011txl@163.com';                 // SMTP username
+$mail->Password = 'tsinghua2011txl';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
 
-$mail->From = '1016749531@qq.com';
-$mail->FromName = 'Mailer';
+$mail->From = ('thu2011txl@163.com');
 $mail->addAddress('d624lff11@163.com');     // Add a recipient
 
 $mail->WordWrap = 50;                                 // Set word wrap to 50 characters
 
-$mail->Subject = 'Here is the subject';
-$mail->Body    = 'This is the HTML message body';
-$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$mail->Subject = '验证码';
+$mail->Body    = md5(time());
 
 if(!$mail->send()) {
     echo 'Message could not be sent.';
