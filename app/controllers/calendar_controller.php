@@ -9,7 +9,7 @@ class CalendarController extends AppController{
 		$this->set('year', 2013);
 		$this->set('month', date('m'));
 		$this->set('day', date('d'));
-		$memos = $this->Calendar->get_all_memos(2013, date('m'), date('d'), 1);
+		$memos = $this->Calendar->get_all_memos(date('Y'), date('m'), date('d'), $this->get_openid());
 		$this->log('memo: '.count($memos), LOG_DEBUG);
 		$this->set('days', $memos);
 		$this->set('today', date('Y-m-d'));
@@ -42,22 +42,20 @@ class CalendarController extends AppController{
 	}
 
 	function save_info(){
-		$year = $this->data['Calendar']['year'];
-		$month = $this->data['Calendar']['month'];
-		$day = $this->data['Calendar']['day'];
+		$date = $this->data['Calendar']['date'];
 		$hour = $this->data['Calendar']['hour'];
 		$minute = $this->data['Calendar']['minute'];
 
 		$place = $this->data['Calendar']['place'];
 		$memo = $this->data['Calendar']['memo'];
 
-		$time = $year."-".$month."-".$day." ".$hour.":".$minute.":00";
+		$time = $date." ".$hour.":".$minute.":00";
 		$this->Calendar->save_info($time, $place, $memo, $this->get_openid());
 		$this->autoRender = false;
 	}
-
 	function  get_openid(){
-		return $this->Session->read('openid');
+		//		return $this->Session->read('openid');
+		return 1;
 	}
 }
 ?>

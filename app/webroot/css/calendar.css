@@ -1,8 +1,3 @@
-
-dy{
-	background:#000;
-}
-
 .view-main{
 	-webkit-background-size:cover;
 	background-size:cover;
@@ -22,15 +17,13 @@ dy{
 	background:none;
 }
 
-html.ios .page{
-	overflow:auto;
-	-webkit-overflow-scrolling:touch;
+.view-main .navbar .icon{
+	color: #FFF;
 }
 
-html.ios .page-content{
-	margin-bottom:1px;
+.view-main .page-content{
+	background: #E6E6E6;
 }
-
 .view-main .navbar{
 	border-bottom:none;
 	background:#cc0442;
@@ -41,89 +34,6 @@ i.icon-plus{
 	color:#fff;
 }
 
-.todo-items-list{
-	margin:0;
-	color:#fff;
-	font-weight:300;
-}
-
-.todo-items-list ul{
-	background:none;
-	border:none;
-}
-
-.todo-items-list .item-title{
-	font-size:18px;
-}
-
-.todo-items-list .swipeout-content{
-	background:none;
-}
-
-.todo-items-list .swipeout-actions{
-	opacity:0;
-	border-bottom-color:rgba(255,255,255,0.1);
-	-webkit-transition-duration:300ms;
-	-moz-transition-duration:300ms;
-	-ms-transition-duration:300ms;
-	-o-transition-duration:300ms;
-	transition-duration:300ms;
-}
-
-.todo-items-list .swipeout-opened .swipeout-actions{
-	opacity:1;
-}
-
-.todo-items-list .item-inner{
-	padding-top:18px;
-	padding-bottom:16px;
-	border-bottom-color:rgba(255,255,255,0.2);
-}
-
-.todo-items-list .label-checkbox:active{
-	background:rgba(255,255,255,0.2);
-}
-
-.todo-items-list .item-content{
-	border-left:5px solid;
-}
-
-.todo-items-list li[data-color="orange"] .item-content{
-	border-left-color:#ff8400;
-}
-
-.todo-items-list li[data-color="blue"] .item-content{
-	border-left-color:#089efe;
-}
-
-.todo-items-list li[data-color="green"] .item-content{
-	border-left-color:#2df523;
-}
-
-.todo-items-list li[data-color="white"] .item-content{
-	border-left-color:#fff;
-}
-
-.todo-items-list li[data-color="yellow"] .item-content{
-	border-left-color:#eaff00;
-}
-
-.todo-items-list li[data-color="pink"] .item-content{
-	border-left-color:#cc0442;
-}
-
-.todo-items-list li[data-color="purple"] .item-content{
-	border-left-color:#ff00f0;
-}
-
-.todo-items-list li[data-color="cyan"] .item-content{
-	border-left-color:#00fff6;
-}
-
-label.label-checkbox input[type=checkbox]:checked+.item-media i.icon-form-checkbox:after{
-	background-color:transparent;
-	border:1px solid #fff;
-}
 
 .popup{
 	background:rgba(54,1,17,0.7);

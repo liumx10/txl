@@ -32,7 +32,7 @@
 									<div class="item-inner">
 										<div class="item-title">
 											<?php $time = $memo['Calendar']['time'];
-											echo date('H-i-s', strtotime($time)).' '.$memo['Calendar']['place']; ?>
+											echo date('H:i:s', strtotime($time)).' '.$memo['Calendar']['place']; ?>
 										</div>
 									</div>
 								</a>
@@ -68,14 +68,14 @@
 			<div class="pages">
 				<div class="page">
 					<div class="page-content">
-						<form action="send-here.html" id='create_memo' class="list-block ajax-submit"">
+						<form action="save_info" method="POST" id='create_memo' class="list-block ajax-submit"">
 							<ul>
 								<li>
 									<div class="item-content">
 										<div class="item-inner">
 											<div class="item-title label">日期</div>
 											<div class="item-input">
-												<input type='date' name='date' value = "2014-7-28">
+												<input type='date' name='data[Calendar][date]' value="2014-7-28">
 											</div>
 										</div>
 									</div>
@@ -85,9 +85,9 @@
 										<div class="item-inner">
 											<div class="item-title label">时间</div>
 											<div class="item-input">
-												<select id="select_h" name='hour'>
+												<select id="select_h" name='data[Calendar][hour]'>
 												</select>
-												<select id="select_m" name='minute'>
+												<select id="select_m" name='data[Calendar][minute]'>
 												</select>
 											</div>
 										</div>
@@ -98,7 +98,7 @@
 										<div class="item-inner">
 											<div class="item-title label">地点</div>
 											<div class="item-input">
-												<input type="text" name='place' placeholder="place">
+												<input type="text" name='data[Calendar][place]' placeholder="place">
 											</div>
 										</div>
 									</div>
@@ -108,15 +108,21 @@
 										<div class="item-inner">
 											<div class="item-title label">事件</div>
 											<div class="item-input">
-												<textarea name='memo' placeholder="your message"></textarea>
+												<textarea name='data[Calendar][memo]' placeholder="your message"></textarea>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-input">
+													<input type="submit" class="button" value="Submit">
 											</div>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<div class="content-block">
-								<a href="#" class="button form-to-json">添加</a>
-							</div>
 						</form>
 					</div>
 				</div>

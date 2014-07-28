@@ -326,8 +326,14 @@
 	color: #FFF;
 	background: 0 0;
 	border: 0;
+	display: inline-block;
 }
 
 .list-block textarea{
 	color: #FFF;
 }
+
+.item-inner .item-input .content-block .button{
+	background:rgba(1,1,1,0);
+}
+

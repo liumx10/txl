@@ -7,7 +7,7 @@ class Calendar extends AppModel{
 
 	function get_all_memos($year, $month, $day,$openid){
 		$start = $year."-".$month."-".$day." 00:00:00"; 
-		$memos = $this->find('all', array('conditions'=>array('time >'=> $start, 'openid'=>$openid)));
+		$memos = $this->find('all', array('conditions'=>array('time >'=> $start, 'openid'=>$openid), 'order'=>'time'));
 
 		$result = array();
 		foreach($memos as $memo){

@@ -66,4 +66,7 @@ var create_select = function create_select(){
 	}
 }
 
-
+$$('#create_memo').on('submitted', function (e) {
+	alert('create success');
+	window.location.reload();
+});
