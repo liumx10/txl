@@ -4,7 +4,20 @@ class Calendar extends AppModel{
 	var $name="Calendar";
 	var $uses="calendars";
 	var $primaryKey = "create_time";
-	
+
+	function get_all_memos($year, $month, $day,$openid){
+		$start = $year."-".$month."-".$day." 00:00:00"; 
+		$memos = $this->find('all', array('conditions'=>array('time >'=> $start, 'openid'=>$openid)));
+
+		$result = array();
+		foreach($memos as $memo){
+			$time = strtotime($memo['Calendar']['time']);
+			$day = date('Y-m-d', $time);
+			$this->log('time: '.$day, LOG_DEBUG);
+			$result[$day][] = $memo;
+		}
+		return $result;
+	}	
 	function get_memo($year, $month, $openid){
 		$day = 1;
 		$memo = array();

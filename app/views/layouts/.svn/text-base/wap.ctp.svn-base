@@ -8,7 +8,6 @@
 
     <!-- Roboto -->
  <?php 
-	echo $this->Html->css('ratchet.min');
 	echo $this->Html->css('mycss');
   echo $this->Html->script('jquery-2.1.1.min'); 
 ?>

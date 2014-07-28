@@ -106,16 +106,17 @@ function sendEdit(dataStr) {
 function newDepartment() {
 	$('#newDepDiv').slideUp();
 	DepName = $("#newDepText").val();
+	actid = $("#active").val();
 	if(DepName) {
 		datastr = {
 			'data[department][name]':DepName,
-			'data[department][id]':$('#parent').val()
+			'data[department][id]':actid
 		};
 		$.ajax({type:"POST",
 				url:"regDepartment",
 				data:datastr,
 				success:function(data,textStatus){
-				uiSingleDepartment(data,DepName);
+				uiSingleDepartment(data, DepName, actid);
 				}});
 		$("#newDepText").val('');
 	}
@@ -144,12 +145,14 @@ function rmDepartment() {
 					if(this.value == id)
 						$(this).hide('slow',function(){$(this).remove();});
 				});
-				$('.groupName').children()[0].click();
+				if($('.groupName')[0])
+					$('.groupName').children()[0].click();
 			}
 			}});
 
 }
 function moveBack() {
+	pid = $('#parent').val();
 	datastr = {'data[Department][pid]':pid};
 	$.ajax({type:"POST",
 			url:"backDepartment",
@@ -160,6 +163,7 @@ function moveBack() {
 			});
 }
 function mail() {
+	return;
 	ids = [];
 	$('.cks').each(function(index){
 			if(this.checked) {
@@ -170,9 +174,12 @@ function mail() {
 	sendMail(ids);
 }
 function sendMail(ids) {
-da = [1,3,4,6];
-info = 'hello wechat';
-dataStr = {'data[mail][ids]':JSON.stringify(da),'data[mail][info]':info};
+	idsStr = JSON.stringify(ids);
+	info = 'testing';
+	dataStr = {
+		'data[mail][ids]':idsStr,
+		'data[mail][info]':info
+	};
 	$.ajax({type:"POST",
 			url:"/weixin/send_notice",
 			data:dataStr,
@@ -181,9 +188,18 @@ dataStr = {'data[mail][ids]':JSON.stringify(da),'data[mail][info]':info};
 			}
 			});
 }
+function print() {
+	//printProfile
+	ids = [];
+	$('.cks').each(function(index){
+			if(this.checked) {
+				var trnode = this.parentNode.parentNode;
+				ids.push(trnode.children[0].value);
+			}
+			});
+	$('#printer').attr('href','printProfile?ids=' + JSON.stringify(ids));
+}
 function move() {
 	alert("move to...");
 }
-function print() {
-	alert("print to file");
-}
+

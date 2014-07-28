@@ -3,14 +3,7 @@ class UsersController extends AppController {
 	var $name = 'users';
 	var $ext = '.php';
 	var $uses = array('Account');
-	function index() {
-	}
-	function signuppage() {
 
-	}
-	function loginpage() {
-
-	}
 	function login() {
 		if (!empty($this->data)) {
 			$username = $this->data['user']['username'];

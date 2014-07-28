@@ -39,5 +39,9 @@ class Employee extends AppModel{
 		$ems = $this->find('first',array('conditions'=>array('openid'=>$openid)));
 		return $ems['Employee'];
 	}
+
+	function get_all_employee($companyid){
+		return $this->find('all', array('conditions'=>array('com_id'=>$companyid)));
+	}
 }
 ?>

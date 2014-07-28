@@ -1,99 +1,58 @@
-<br />
-<?php echo $this->Form->create(null, array('action' => 'search_people_by_name')); ?>
-	<input type="search" name="data[name]" placeholder='请输入姓名'/>
-    <button class="btn btn-link" onclick="return dosubmit()">
-    	<span class="icon icon-right pull-right"></span>
-    	Search
-    </button>
-</form>
-<hr/>
+<div class="navbar">
+    <div class="navbar-inner">
+    </div>
+</div>
 
-<?php if ($input == true) { ?>
-<?php 
-	if ($people != null){   ?>
-	<ul class="table-view">
-        <?php foreach($people as $person): ?>
-    	<li class="table-view-cell media">
-            
-            <!-- head photo now is default now -->
-			<img class="media-object pull-left" src=<?php 
-                if (file_exists(WWW_ROOT.'headimage/'.$person['Employee']['id'])){
-                    echo $this->webroot.'headimage/'.$person['Employee']['id'];
-                }else{
-                    echo $this->webroot.'headimage/default.png';
-                }
-
-            ?> width=40px height=40px/ >
-          
-			<div class="media-body font_p">
-                <a href=<?php echo $this->Html->url(
-                    array("controller" => 'txl', "action"=>'show_people', $person['Employee']['id']));
-                    ?>
-                >
-                <?php echo $person['Employee']['name'] ?>
-
-                <p class="">
-				<?php
-					$show = $person['Employee']['position'];
-					$show = $this->Text->truncate($show, 35, array('ending'=>'...')); 
-					echo $this->Html->link($show,
-					array('controller'=>'txl', 'action'=>'show_people', $person['Employee']['id']));
-					?>
-                </p>
-                </a>
-			</div>
-	   </li>
-	<?php endforeach; ?>
-	</ul> 
-<?php  }
-else {
-    echo " 查无此人";
-}
-}
-?>
-
-<nav class="bar bar-tab bar-footer">
-    <a class="tab-item" onclick="window.history.back()">
-          <span class="icon icon-left"></span>
-          <span class="tab-label">Back</span>
-    </a>
-
-    
-    <!-- Search people by name -->
-    <a class="tab-item" href=<?php echo $this->Html->url(
-            array( "controller" => "txl",
-                   "action" => "search_people_by_name",
-                   $companyid));
-            ?>
-    >
-        <span class="icon icon-search"></span>
-        <span class="tab-label">Search</span>
-    </a>
-
-    <a class="tab-item" href=<?php echo $this->Html->url(
-            array( "controller" => "txl",
-                    "action" => "show_group",
-                    $companyid));   
-                    ?>
-    >
-        <span class="icon icon-home"></span>
-        <span class="tab-label">Home</span>
-    </a>
-    
-    <!-- Edit personal information -->
-    <a class="tab-item" 
-       href=<?php echo $this->Html->url(array('controller'=>'txl','action'=>'show_people', $myid)); ?>
-    >
-        <span class="icon icon-person"></span>
-        <span class="tab-label">Myself</span>
-    </a>
-
-    <a class="tab-item" href=<?php
-          echo $this->Html->url(
-            array("controller"=>"txl",
-                  "action"=>"show_group")); ?>
-    >
-        <span class="icon icon-pages"></span>
-        <span class="tab-label">Txl</span>
-    </a>
-</nav>
+<div data-page="home" class="page no-navbar">
+  <!-- Search bar -->
+  <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
+    <div class="searchbar-input" style="width:80%; margin-right:5px;">
+      <input type="search" placeholder="Search"><a href="#" class="searchbar-clear"></a>
+    </div><a href="#" class="back">Cancel</a>
+  </form>
+ 
+  <!-- Search bar overlay -->
+  <div class="searchbar-overlay"></div>
+ 
+  <div class="page-content">
+    <!-- This block will be displayed if nothing found -->
+    <div class="content-block searchbar-not-found">
+      <div class="content-block-inner">查无此人</div>
+    </div>
+ 
+    <!-- This block will be displayed if anything found, and this list block is used a searbar target -->
+    <div class="list-block list-block-search searchbar-found">
+        <ul>
+            <?php foreach($employees as $employee): ?>
+                <a href=<?php echo $this->Html->url(array('controller'=>'txl', 'action'=>'show_people', 
+                                                $employee['Employee']['id']));?>
+                                class="item-link">
+                    <li class="item-content">
+                        <div class="item-media">
+                              <img  src=<?php
+                                      if (file_exists(WWW_ROOT.'headimage'.DS.$employee['Employee']['id']))
+                                          echo $this->webroot.'headimage/'.$employee['Employee']['id'];
+                                      else
+                                          echo $this->webroot.'headimage/default.png';
+                                      ?>
+                                  width=40px height=40px/ >
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title">
+                            <?php echo $employee['Employee']['name']; ?>
+                          </div>
+                          <div class='item-subtitle'>
+                                <?php
+                                  $show = $employee['Employee']['position'];
+                                  echo $show;
+                                  ?>
+                          </div>
+                        </div>
+                        
+                    </li>
+                </a>    
+            <?php endforeach; ?>
+        </ul>
+    </div>
+  </div>
+</div>  

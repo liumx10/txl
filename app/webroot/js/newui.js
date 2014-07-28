@@ -58,7 +58,9 @@ function uiDepartment(data) {
 		if(!chi) {
 			str = '\
 				  <li class="groupName" value="%d" style="display:none;">\
-				  <a onclick="clickDepartment(%d);return false;" href="#">%s</a>\
+				  <a onclick="clickDepartment(%d);return false;" href="#">\
+				  <i class="fa fa-fw fa-bars"></i>%s\
+				  <i class="fa fa-fw fa-caret-down" style="display:none;"></i></a>\
 				  </li>\
 				  ';
 			str = sprintf(str, departments[i].id, departments[i].id, departments[i].name);
@@ -66,16 +68,26 @@ function uiDepartment(data) {
 		finalstr += str;
 	}
 	//remove old departments
-	$('.groupName').hide('slow',function(){
-			$('.groupName').remove();
-			$('#functional').before(finalstr);
-			$('.groupName').show('slow');
-			$('.groupName').each( function(index){
-				if($(this).val()==actid)
+	if($('.groupName')[0]) {
+		$('.groupName').hide('slow',function(){
+				$('.groupName').remove();
+				$('#functional').before(finalstr);
+				$('.groupName').show('slow');
+				$('.groupName').each( function(index){
+					if($(this).val()==actid)
 					$(this).children()[0].click();
-				});
+					});
 
-			});
+				});
+	}
+	else {
+		$('#functional').before(finalstr);
+		$('.groupName').show('slow');
+		$('.groupName').each( function(index){
+				if($(this).val()==actid)
+				$(this).children()[0].click();
+				});
+	}
 }
 
 function uiSingleContact() {
@@ -93,14 +105,52 @@ function uiSingleContact() {
 	$('.ieditable').bind('input',function(){
 			$(this).parent().addClass('be_submit');});
 }
-function uiSingleDepartment(data,DepName) {
+function uiSingleDepartment(data, DepName, actid) {
 	id = data;
-	str = '\
-		  <li class="groupName" value="%d" style="display:none;">\
-		  <a onclick="clickDepartment(%d);return false;" href="#">%s</a>\
-		  </li>\
-		  ';
-	str = sprintf(str, id, id, DepName);
-	$('#functional').before(str);
-	$('.groupName').show('slow');
+	var chUl = $('#' + actid);
+	if(chUl[0]) {
+		//has child
+		if(chUl.attr('class').indexOf('in') < 0) {
+			//closed
+			str = '\
+				  <li>\
+				  <a href="#" onclick="clickDepartment(%d);enDepartment(%d,%d);return false;">%s</a>\
+				  </li>\
+				';
+			str = sprintf(str,id,actid,id,DepName);
+			chUl.append(str);
+			//open it
+			$($('.active').children()[0]).click();
+		}
+		else {
+			//opened
+			str = '\
+				  <li style="display:none;" class="temp">\
+				  <a href="#" onclick="clickDepartment(%d);enDepartment(%d,%d);return false;">%s</a>\
+				  </li>\
+				';
+			str = sprintf(str,id,actid,id,DepName);
+			chUl.append(str);
+			$('.temp').show('slow');
+		}
+	}
+	else {
+		//no child
+		$($($('.active').children()).children()[0]).removeClass('fa-bars');
+		$($($('.active').children()).children()[0]).addClass('fa-arrows-v');
+		$($($('.active').children()).children()[1]).show();
+		$($('.active').children()[0]).attr('data-toggle','collapse');
+		$($('.active').children()[0]).attr('data-target','#' + actid);
+		//data-toggle="collapse" data-target="#41"
+		str = '\
+			  <ul id="%d" class="collapse">\
+			  <li>\
+			  <a href="#" onclick="clickDepartment(%d);enDepartment(%d,%d);return false;">%s</a>\
+			  </li></ul>\
+			  ';
+		str = sprintf(str,actid,id,actid,id,DepName);
+		$('.active').append(str);
+		//open it
+		$($('.active').children()[0]).click();
+	}
 }

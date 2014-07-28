@@ -29,39 +29,47 @@
       <!-- Your main view, should have "view-main" class -->
       <div class="view view-main">
         <!-- Top Navbar-->
-        <div class="navbar">
-          <div class="navbar-inner">
-            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-            <div class="center sliding">Awesome App</div>
-            <div class="right">
-              <!-- 
-                Right link contains only icon - additional "icon-only" class
-                Additional "open-panel" class tells app to open panel when we click on this link
-              -->
-              <a href="#" class="link icon-only open-panel"><i class="icon icon-bars-blue"></i></a>
-            </div>
-          </div>
-        </div>
-        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-        <div class="pages navbar-through toolbar-through">
-          <!-- Page, "data-page" contains page name -->
-          <div data-page="index" class="page">
-            <!-- Scrollable page content -->
-            <div class="page-content">
-              <p>Page content goes here</p>
-              <!-- Link to another page -->
-              <a href="about.html">About app</a>
-            </div>
-          </div>
-        </div>
-        <!-- Bottom Toolbar-->
-        <div class="toolbar">
-          <div class="toolbar-inner">
-            <!-- Toolbar links -->
-            <a href="#" class="link">Link 1</a>
-            <a href="#" class="link">Link 2</a>
-          </div>
-        </div>
+	<div class="pages">
+	  <div class="page navbar-fixed">
+	
+           <div class="navbar">
+          	  <div class="navbar-inner">
+          	     <!-- Buttons row as tabs controller in navbar-->
+          	        <!-- Link to 1st tab, active -->
+          	        <a href="#tab1" class="tab-link active button">Tab 1</a>
+          	        <!-- Link to 2nd tab -->
+          	        <a href="#tab2" class="tab-link button">Tab 2</a>
+          	        <!-- Link to 3rd tab -->
+          	        <a href="#tab3" class="tab-link button">Tab 3</a>
+          	  </div>
+          	</div>
+	    <div class="page-content">
+	      <!-- Tabs animated wrapper, required to switch tabs with transition -->
+	      <div class="tabs-animated-wrap">
+	        
+	        <!-- Tabs, tabs wrapper -->
+	        <div class="tabs">
+	          <!-- Tab 1, active by default -->
+	          <div id="tab1" class="tab active">
+	            ... Tab 1 content ...
+	          </div>
+	 
+	          <!-- Tab 2 -->
+	          <div id="tab2" class="tab">
+	            ... Tab 2 content ...
+	          </div>
+	 
+	          <!-- Tab 3 -->
+	          <div id="tab3" class="tab">
+	            ... Tab 3 content ...
+	          </div>       
+	        </div>
+	        
+	      </div> 
+	    </div>
+	  </div>
+	</div>  
+   
       </div>
     </div>
     <?php echo $this->Html->script('framework7.min'); ?>

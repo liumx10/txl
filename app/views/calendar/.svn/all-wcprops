@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 74
-/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/views/calendar
+/rdm/rdm_tapd_rep/!svn/ver/62615/QingHua2014_proj/trunk/app/views/calendar
 END
 edit.ctp
 K 25
@@ -13,5 +13,5 @@ home.ctp
 K 25
 svn:wc:ra_dav:version-url
 V 83
-/rdm/rdm_tapd_rep/!svn/ver/62557/QingHua2014_proj/trunk/app/views/calendar/home.ctp
+/rdm/rdm_tapd_rep/!svn/ver/62615/QingHua2014_proj/trunk/app/views/calendar/home.ctp
 END

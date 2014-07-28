@@ -81,18 +81,11 @@ class TxlController extends AppController{
 		if (empty($companyid)){
 			$companyid = $person['com_id'];			
 		}
-
+		$this->log($companyid, LOG_DEBUG);
 		$this->set("companyid", $companyid);
 		$this->set('myid', $myid);
-
-		if ($this->data['name'] != null){
-			$name = $this->data['name'];
-			$this->set('input', true);
-			$this->set("people", $this->Employee->get_by_name($name, $companyid));
-		}else{
-			$this->set('input', false);
-			$this->set("people", null);
-		}			
+		
+		$this->set('employees', $this->Employee->get_all_employee($companyid));			
 	}
 
 	function search_branch($department_id, $name){
@@ -107,31 +100,35 @@ class TxlController extends AppController{
 	}	
 
 	function get_openid(){
-		return $this->Session->read('openid');
-	//	return 1;
+		if ($this->Session->check('openid')){
+			return $this->Session->read('openid');
+		}else{
+			return 1;
+		}
 	}
 
 	function edit(){
+		$this->log('data:'.$this->data['Employee'], LOG_DEBUG);
+		$this->log('post:'.$_POST['tel'], LOG_DEBUG);
 		$openid = $this->get_openid();
 		$person = $this->Employee->get_by_openid($openid);
 		$email = $person['email'];
 		$tel = $person['tel'];
 		$wechat = $person['wechat'];
 
-		if (!empty($_POST['email'])){
-			$email = $_POST['email'];
+		if (!empty($this->data['Employee']['email'])){
+			$email = $this->data['Employee']['email'];
 		}
-		if (!empty($_POST['tel'])){
-			$tel = $_POST['tel'];
+		if (!empty($this->data['Employee']['tel'])){
+			$tel = $this->data['Employee']['tel'];
 		}
-		if (!empty($_POST['wechat'])){
-			$wechat = $_POST['wechat'];
+		if (!empty($this->data['Employee']['wechat'])){
+			$wechat = $this->data['Employee']['wechat'];
 		}
 
 		$person['email'] = $email;
 		$person['tel'] = $tel;
 		$person['wechat'] = $wechat;
-		$this->log($wechat, 'debug');
 		$this->Employee->update_info($person);
 
 		$this->set('wechat', $wechat);
@@ -139,16 +136,15 @@ class TxlController extends AppController{
 		$this->set('email', $email);
 		$this->set('photoid', $this->get_photoid($person['id']));
 		$this->set('myid', $person['id']);
-
-		$this->render('edit');
 	}
 
 	function load_image(){
 		$permitted = array('jpg', 'png');
 		$this->set('data', $this->data);
 		$loadOk = false;
-		if (!empty($this->data['Employee']['photo'])){
-			$info = $this->data['Employee']['photo'];
+		$this->log($_FILES, LOG_DEBUG);
+		if (!empty($_FILES['file'])){
+			$info = $_FILES['file'];
 
 			// check if the file's type is permitted
 			$extension = pathinfo($info['name'], PATHINFO_EXTENSION);
@@ -175,7 +171,7 @@ class TxlController extends AppController{
 			}
 
 		}
-		$this->edit(true);
+		$this->autoRender = false;
 	}
 
 }

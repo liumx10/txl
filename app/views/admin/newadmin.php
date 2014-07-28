@@ -37,7 +37,7 @@ echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li>
-					<a href="javascript:window.open('','_self','');window.close();">
+					<a href="signout">
 						<i class="fa fa-fw fa-sign-out"></i>退出系统</a>
                 </li>
             </ul>
@@ -67,13 +67,13 @@ echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
 									<input type="checkbox" id="selectA" onclick="selectAll();"> 
 									<a href="#" onclick="rmContacts();return false;">
 										<i class="fa fa-fw fa-trash-o"></i>删除</a>
+									<a onclick="move(); return false;" href="#">
+										<i class="fa fa-fw fa-folder-o"></i>添加至</a>
 									<a onclick="apply();return false;" href="#">
 										<i class="fa fa-fw fa-save"></i>应用修改</a>
-									<a href="#" onclick="mail();return false;">
-										<i class="fa fa-fw fa-envelope"></i> 通知</a>
-									<a onclick="move(); return false;" href="#">
-										<i class="fa fa-fw fa-plus"></i>添加至</a>
-									<a onclick="print();return false;" href="#">
+									<a href="#" data-toggle="modal" data-target="#myModal">
+										<i class="fa fa-fw fa-envelope-o"></i> 通知</a>
+									<a onclick="print();" href="#" id="printer" download>
 										<i class="fa fa-fw fa-print"></i> 打印</a>
 								</div>
                             </div>
@@ -97,7 +97,8 @@ echo $this->Html->css('font-awesome-4.1.0/css/font-awesome.min');
                 </div>
 
 <div style="width:100%;padding-bottom:650px;"></div>
-        </div>
+
+	 </div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -111,5 +112,25 @@ echo $this->Html->script("newscript.js");
 ?>
 <input type="hidden" id="parent" value="1">
 <input type="hidden" id="active" value="1">
+<!--================================================================-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">通知</h4>
+      </div>
+      <div class="modal-body">
+		<textarea style="width:500px;height:100px;"name="haha" id="info"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button onclick="mail();" type="button" class="btn btn-primary" data-dismiss="modal">发送</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--================================================================-->
 </body>
 </html>

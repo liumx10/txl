@@ -23,7 +23,7 @@
 		</a>
 	</div>
 	<div>
-		<a href="../calendar/home">
+		<a href="../calendar/index">
 			<img src="../img/memo" alt="" title="" />
 			<p>日历</p>
 		</a>

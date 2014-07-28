@@ -36,10 +36,10 @@
 	<input value=<?php echo $lng; ?> id='lng' type="hidden"/>
 	<input value=<?php echo $add; ?> id='add' type="hidden"/>
 
-		<nav class="bar bar-tab bar-footer">
-	      	<a class="tab-item" onclick="window.history.back()" >
-	      		<span class="icon icon-left"></span>
-	      		<span class="tab-label">Back</span>
-	      	</a>
-	    </nav>
+	<div class="toolbar">
+      	<a class="tab-item" onclick="window.history.back()" >
+      		<span class="icon icon-left"></span>
+      		<span class="tab-label">Back</span>
+      	</a>
+    </div>
 </body>

@@ -4,13 +4,12 @@ class AdminController extends AppController {
 	public $ext = '.php';
 	public $uses = array('Account','Company','Department','Employee');
 	public $components = array('RequestHandler');
+	public $helpers = array('excel');
 	function newadmin() {
 
 	}
-	function v2admin() {
-
-	}
-	function home() {
+	function signout() {
+		$this->Session->delete('username');
 	}
 	function getCompany() {
 		$this->autoRender = false;
@@ -98,10 +97,13 @@ class AdminController extends AppController {
 	function backDepartment() {
 		$this->autoRender = false;
 		if($this->RequestHandler->isAjax()) {
+			$this->log('++++++++++++++++++++++++++++++++++','debug');
 			$id = $this->data['Department']['pid'];
+			$this->log('id'.$id,'debug');
 			$parent = $this->Department->get_parent($id);
-			$id = $parent['parent_id'];
-
+			$id = $parent['id'];
+			$this->log('-------------------------------------','debug');
+			$this->log('id'.$id,'debug');
 			if($id == '1') {
 				$name = $this->Session->read('username');
 				$com_ids = $this->Account->owns($name);
@@ -130,7 +132,6 @@ class AdminController extends AppController {
 						'children'=>$com_children);
 				}
 				echo json_encode(array('pid'=>$id,'dep'=>$com_info,'actid'=>$actid));
-
 			}
 		}
 	}
@@ -145,6 +146,17 @@ class AdminController extends AppController {
 		$id = $this->data['Department']['id'];
 		$this->Department->delete($id);
 		echo $id;
+	}
+	function printProfile() {
+		$this->header('Content-Disposition:attachment;filename="profile.xls"');
+		$ids = json_decode($this->params['url']['ids']);
+		$fileStr = array();
+		foreach($ids as $id) {
+			$emp = $this->Employee->get_employee($id);
+			$fileStr[] = array('姓名' => $emp['name'], '职位' => $emp['position'], 
+			'手机' => $emp['tel'], '微信'=> $emp['wechat'], '电子邮件' => $emp['email']);
+		}
+		$this->set('data',$fileStr);
 	}
 }
 ?>

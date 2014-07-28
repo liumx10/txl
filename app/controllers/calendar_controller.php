@@ -6,8 +6,13 @@ class CalendarController extends AppController{
 	var $layout='wap';
 
 	function index(){
-		$this->autoRender = false;
-		echo 'hello';
+		$this->set('year', 2013);
+		$this->set('month', date('m'));
+		$this->set('day', date('d'));
+		$memos = $this->Calendar->get_all_memos(2013, date('m'), date('d'), 1);
+		$this->log('memo: '.count($memos), LOG_DEBUG);
+		$this->set('days', $memos);
+		$this->set('today', date('Y-m-d'));
 	}
 	function home(){
 		$this->set('year', date('Y'));

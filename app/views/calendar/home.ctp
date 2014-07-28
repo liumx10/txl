@@ -16,10 +16,12 @@
 		edit = function edit(){
 			if (document.getElementById('create_memo').style.display == 'none'){
 				$("#create_memo").slideDown();
-			}else{
+			}
+			else{
 				$("#create_memo").slideUp();
 			}
 		}
+
 		cancel = function cancel(){
 			$("#memo").hide();
 			$("#calendar").slideDown(500);
@@ -126,7 +128,7 @@
 						for (var j=0; j<7; j++){
 							td = $('<td onclick="show_memos('+val[i*7+j]+')">'+val[i*7+j]+"</td>");
 							if (events[val[7*i+j]] == 1){
-								td.append("<img src='../../img/setting' height='13px' width='13px'/>");
+								td.append("<img src='../../img/remind' height='13px' width='13px'/>");
 							}
 							tr.append(td);
 						}
@@ -176,7 +178,7 @@
 		<span class="tab-label">Home</span>
 	</a>
 </nav>
-<body onload="init()" style="overflow:auto">
+<body onload="init()">
 	<div id="calendar">
 		<table border='0' width="100%" height="54px" style="table-layout:fixed;">
 			<tr bgcolor="#808080"> 
@@ -222,10 +224,9 @@
 				<input type="text" placeholder="null" id="edit_place"/>
 			</div>
 			<textarea rows="5" id="edit_memo"></textarea>
-			<button class="btn btn-positive btn-block" style="border:#C0C0C0;background-color:#C0C0C0" onclick="mysubmit()">提交</button>
+			<button class="btn btn-block" onclick="mysubmit()" style="border:#C0C0C0; background-color:#C0C0C0;">提交</button>
 		</form>
 		<button class="btn btn btn-block" onclick="cancel()" style="border:#C0C0C0;background-color:#C0C0C0" >返回</button>
-
 	</ul>
 	
 </body>
