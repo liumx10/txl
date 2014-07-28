@@ -9,7 +9,11 @@
 				<div class="page navbar-fixed" data-page="index">
 					<div class="navbar">
 						<div class="navbar-inner">
-							<div class="left"></div>
+							<div class="left">
+								<div onclick="window.history.back()">
+									<span class="icon icon-left"></span>
+								</div>
+							</div>
 							<div class="center sliding">日程安排</div>		
 							<div class="right">
 								<a href="#" data-popup="#create" class="link open-popup">
@@ -74,8 +78,7 @@
 									<div class="item-content">
 										<div class="item-inner">
 											<div class="item-title label">日期</div>
-											<div class="item-input">
-												<input type='date' name='data[Calendar][date]' value="2014-7-28">
+											<div class="item-input" id="date_input">
 											</div>
 										</div>
 									</div>

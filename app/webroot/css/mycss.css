@@ -322,18 +322,19 @@
 
 .list-block select{
 	width:30%;
-	margin-right: 20px;
+	margin-right: 0px;
 	color: #FFF;
 	background: 0 0;
 	border: 0;
 	display: inline-block;
+	align: center;
 }
 
 .list-block textarea{
 	color: #FFF;
 }
 
-.item-inner .item-input .content-block .button{
+.item-inner .item-input .button{
 	background:rgba(1,1,1,0);
 }
 

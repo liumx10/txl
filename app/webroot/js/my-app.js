@@ -1,3 +1,21 @@
+var isMobile = {
+    Android: function() {
+        return /Android/i.test(navigator.userAgent);
+    },
+    BlackBerry: function() {
+        return /BlackBerry/i.test(navigator.userAgent);
+    },
+    iOS: function() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    },
+    Windows: function() {
+        return /IEMobile/i.test(navigator.userAgent);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+    }
+};
+
 var myApp = new Framework7();
 
 var $$ = Framework7.$;
@@ -64,9 +82,38 @@ var create_select = function create_select(){
 		option = $("<option value='"+i+"'>"+i+"分</option>");
 		$('#select_m').append(option);
 	}
+	
+	if (isMobile.iOS()){
+		$('#date_input').append('<input type="date" name="data[Calendar][date]" value="2014-7-28">');
+	}else{
+		select_y = $('<select name="data[Calendar][year]"></select>');
+		for (var i=2000; i<2020; i++){
+			option = $('<option value='+i+'>'+i+'年</option>');
+			select_y.append(option);
+		}
+		
+		select_m = $('<select name="data[Calendar][month]"</select>');
+		for (var i=1; i<13; i++){
+			option = $('<option value='+i+'>'+i+'月</option>');
+			select_m.append(option);
+		}
+
+		select_d = $('<select name="data[Calendar][month]"</select>');
+		for (var i=1; i<32; i++){
+			option = $('<option value=' + i + '>' + i +'日</option>');
+			select_d.append(option);
+		}
+
+		$('#date_input').append(select_y);
+		$("#date_input").append(select_m);
+		$('#date_input').append(select_d);
+	}
+
 }
 
 $$('#create_memo').on('submitted', function (e) {
 	alert('create success');
 	window.location.reload();
 });
+
+

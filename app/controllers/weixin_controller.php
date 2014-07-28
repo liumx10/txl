@@ -90,6 +90,44 @@ class WeixinController extends AppController {
 			'appsecret' => $com['appsecret']
 		);
 	}
+	function test() {
+require 'PHPMailerAutoload.php';
+
+$mail = new PHPMailer;
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.qq.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = '1016749531@qq.com';                 // SMTP username
+$mail->Password = 'jayjay3821676';                           // SMTP password
+$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
+
+$mail->From = '1016749531@qq.com';
+$mail->FromName = 'Mailer';
+$mail->addAddress('d624lff11@163.com');     // Add a recipient
+
+$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
+
+$mail->Subject = 'Here is the subject';
+$mail->Body    = 'This is the HTML message body';
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+if(!$mail->send()) {
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+} else {
+    echo 'Message has been sent';
+}
+              /*  $this->autoRender = false;
+		$to      = 'd624lff11@163.com';
+		$subject = 'the subject';
+		$message = 'hello';
+		$headers = 'From: webmaster@example.com' . "\r\n" .
+		    'Reply-To: webmaster@example.com' . "\r\n" .
+		    'X-Mailer: PHP/' . phpversion();
+
+		echo mail($to, $subject, $message, $headers);
+*/	}
 }
 
 ?>
