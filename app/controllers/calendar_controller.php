@@ -57,8 +57,8 @@ class CalendarController extends AppController{
 		$this->autoRender = false;
 	}
 	function  get_openid(){
-		//		return $this->Session->read('openid');
-		return 1;
+		return $this->Session->read('openid');
+	//	return 1;
 	}
 }
 ?>

@@ -2,7 +2,7 @@
 class AdminController extends AppController {
 	public $name = 'admin';
 	public $ext = '.php';
-	public $uses = array('Account','Company','Department','Employee');
+	public $uses = array('Account','Company','Department','Employee','Work');
 	public $components = array('RequestHandler');
 	public $helpers = array('excel');
 	function newadmin() {
@@ -157,6 +157,34 @@ class AdminController extends AppController {
 			'手机' => $emp['tel'], '微信'=> $emp['wechat'], '电子邮件' => $emp['email']);
 		}
 		$this->set('data',$fileStr);
+	}
+	function getDir() {
+		$this->autoRender = false;
+		$id = $this->params['url']['key'];
+		$children = $this->Department->get_children($id);
+		$res = array();
+		foreach($children as $child) {
+			$cid = $child['id'];
+			$grandson = $this->Department->get_children($cid);
+			if(empty($grandson))
+				$res[] = array("title" => $child['name'],"key" => $child['id'],
+					"folder" => false);
+			else 
+				$res[] = array("title" => $child['name'],"key" => $child['id'],
+					"folder" => true, "lazy"=>true);
+		}
+		echo json_encode($res);
+	}
+	function additionalJob() {
+		$this->autoRender = false;
+		if($this->RequestHandler->isAjax()) {
+			$ids = json_decode($this->data['job']['ids']);
+			$des = $this->data['job']['des'];
+			foreach($ids as $id) {
+				$this->Work->job($id,$des);
+				echo $id;
+			}
+		}
 	}
 }
 ?>

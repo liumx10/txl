@@ -11,27 +11,20 @@ class IdentifyController extends AppController{
 	function identify(){
 		$this->set('openid', $this->get_openid());
 	}
+	
+	function verf(){
+		$this->autoRender = false;
+		$openid = $this->get_openid();
+		$person = $this->Employee->get_by_tel($this->data['Employee']['tel']);
 
-	function verfication($openid=null){
-		if ($openid == null){
-			$openid = $this->get_openid();
-		}
-
-		$person = $this->Employee->get_by_tel($_POST['tel']);
-		if ($_POST['verfication'] == $person['verfication'])
-		{
+		if ($this->data['Employee']['verf'] == $person['verification']){
 			$person['openid'] = $openid;
 			$this->Employee->update_info($person);
-			
-			// this is debug information	
-			$this->set('companyid', $person['com_id']);
-			$this->set('data', $this->data);
-			$this->render('verf_success');
+			echo true;		
 		}else{
-			$this->render('verf_failed');
+			echo false;
 		}
 	}
-
 	function get_openid(){
 		return $this->Session->read('openid');
 	}

@@ -27,13 +27,13 @@ class SignController extends AppController{
 		$openid = $this->get_openid();
 		$person = $this->Employee->get_by_openid($openid);
 
-		//$id = $person['id'];
-		$id = 1;
+		$id = $person['id'];
 		$address = $this->data['Sign']['address'];
 		$time = date('Y-m-d H:i:s');
 		$latitude = $this->data['Sign']['latitude'];
 		$longitude = $this->data['Sign']['longitude'];
-
+		
+		$this->log('address: '.$address, LOG_DEBUG);
 		$info = array('address'=>$address, 'time'=>$time, 'id'=>$id, 'latitude'=>$latitude, 'longitude'=>$longitude);
 		$this->Sign->save($info);
 	}

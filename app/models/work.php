@@ -3,10 +3,14 @@ class Work extends AppModel{
 	var $name = 'Work';
 	var $useTable = 'work_relation';
 
-	function job($emp_id,$com_id) {
+	function job($emp_id,$dep_id) {
 		//called after employee were added in 
-		$newjob = array('Work' => array('emp_id'=>$emp_id,'dep_id'=>$com_id));
+		$newjob = array('Work' => array('emp_id'=>$emp_id,'dep_id'=>$dep_id));
 		$this->save($newjob);
+	}
+
+	function loseJob() {
+
 	}
 }
 ?>

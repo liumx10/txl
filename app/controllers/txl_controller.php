@@ -10,8 +10,7 @@ class TxlController extends AppController{
 		$person = $this->Employee->get_by_openid($openid);
 		
 		if ( $person == null ){ // the user does not register
-			$this->set('id', $openid);
-			$this->render('not_find');
+			$this->redirect(array('controller'=>'identify', 'action'=>'identify'));
 		}else{
 			$this->redirect(array('controller'=>'home', 'action'=>'home'));
 		}

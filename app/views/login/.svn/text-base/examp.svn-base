@@ -1,7 +1,0 @@
-<?php
-echo $form->create('user', array('action' => 'register','style' => 'width:300px;'));
-echo $form->input('username');
-echo $form->input('password', array('type' => 'password'));
-echo $form->submit('login');
-echo $form->end();
-?>

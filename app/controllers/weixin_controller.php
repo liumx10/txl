@@ -54,7 +54,7 @@ class WeixinController extends AppController {
 		var_dump($result);
 		$this->autoRender = false;
 	}
-	function set_openid($com_id, $redirect) {
+	function set_openid($com_id) {
 		$options = $this->get_wechat_options($com_id);
 		$weObj = new Wechat($options);
 		$access_token = $weObj->getOauthAccessToken();
@@ -76,10 +76,10 @@ class WeixinController extends AppController {
                                         "touser"=>$openid,
                                         "msgtype"=>"text",
                                         "text"=>array(
-                                        "content"=>$content,//date(DATE_RFC2822),
+                                        "content"=>"【通知公告】\n".$content,//date(DATE_RFC2822),
                                 ),
                         );
-                        $weObj->sendCustomMessage($data);
+			$this->log('send info '.$weObj->sendCustomMessage($data), 'debug');
                 }
         }
 	function get_wechat_options($com_id){
@@ -90,44 +90,6 @@ class WeixinController extends AppController {
 			'appsecret' => $com['appsecret']
 		);
 	}
-	function test() {
-                $this->autoRender = false;
-require_once 'mail/PHPMailerAutoload.php';
-
-$mail = new PHPMailer;
-
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'smtp.163.com';  // Specify main and backup SMTP servers
-$mail->Port = 25;
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'thu2011txl@163.com';                 // SMTP username
-$mail->Password = 'tsinghua2011txl';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable encryption, 'ssl' also accepted
-
-$mail->From = ('thu2011txl@163.com');
-$mail->addAddress('d624lff11@163.com');     // Add a recipient
-
-$mail->WordWrap = 50;                                 // Set word wrap to 50 characters
-
-$mail->Subject = '验证码';
-$mail->Body    = md5(time());
-
-if(!$mail->send()) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
-}
-              /*  $this->autoRender = false;
-		$to      = 'd624lff11@163.com';
-		$subject = 'the subject';
-		$message = 'hello';
-		$headers = 'From: webmaster@example.com' . "\r\n" .
-		    'Reply-To: webmaster@example.com' . "\r\n" .
-		    'X-Mailer: PHP/' . phpversion();
-
-		echo mail($to, $subject, $message, $headers);
-*/	}
 }
 
 ?>

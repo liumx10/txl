@@ -22,10 +22,43 @@ var $$ = Framework7.$;
 
 var mainView = myApp.addView('.view-main', {dynamicNavbar: true});
 
-var loadImage = function loadImage(){
-    $('#load_image').slideDown();
-}
 
+$$('#identify_test').on('click', function(){
+	myApp.modal({
+		title:	'绑定',
+		text:	'输入手机号和验证码',
+		afterText:	'<input type="text" id="modal-username" placeholder="手机号码" class="modal-text-input modal-text-input-double">' +
+					'<input type="text" id="modal-password" placeholder="验证码" class="modal-text-input modal-text-input-double">',
+		buttons: [
+		{
+			text:'取消'
+		},
+		{
+			text:'确认',
+			bold: true,
+			onClick: function(){
+				username = document.getElementById('modal-username').value;
+				password = document.getElementById('modal-password').value;
+				var datastr = {"data[Employee][tel]": username,
+							   "data[Employee][verf]": password};
+				$.ajax({
+					method:'post',
+					url:'verf',
+					data: datastr,
+					success: function(data, status){
+						if (data == true){
+							myApp.alert('绑定成功', '提示', function(){
+								window.location.href = "../home/home";
+								});
+						}else{
+							myApp.alert('绑定失败', '提示');
+						}
+					}
+				});
+			}
+		},]
+	});
+});
 var ajaxFileUpload = function ajaxFileUpload() {
   $.ajaxFileUpload
   (
@@ -48,7 +81,7 @@ var ajaxFileUpload = function ajaxFileUpload() {
   )
   $('#load_image').slideUp();
   return true;
-}
+};
 
 var edit_submit = function edit_submit(){
 	var datastr = {};
@@ -66,12 +99,12 @@ var edit_submit = function edit_submit(){
 
 		}
 	});
-}
+};
 
 var showtable = function showtable(tabnum){
 	myApp.showTab(tabnum);
 	alert(tabnum);
-}
+};
 
 var create_select = function create_select(){
 	for (var i=0; i<24; i++){
@@ -86,21 +119,34 @@ var create_select = function create_select(){
 	if (isMobile.iOS()){
 		$('#date_input').append('<input type="date" name="data[Calendar][date]" value="2014-7-28">');
 	}else{
-		select_y = $('<select name="data[Calendar][year]"></select>');
+		select_y = $('<select name="data[Calendar][year]" style="width:35%"></select>');
+		var mydate = new Date();
 		for (var i=2000; i<2020; i++){
-			option = $('<option value='+i+'>'+i+'年</option>');
+			if (mydate.getFullYear() == i){
+				option = $('<option value='+i+' selected>'+i+'年</option>');
+			}else{
+				option = $('<option value='+i+'>'+i+'年</option>');
+			}
 			select_y.append(option);
 		}
 		
-		select_m = $('<select name="data[Calendar][month]"</select>');
+		select_m = $('<select name="data[Calendar][month]"></select>');
 		for (var i=1; i<13; i++){
-			option = $('<option value='+i+'>'+i+'月</option>');
+			if (mydate.getMonth() == i-1){
+				option = $('<option value='+i+' selected>' + i+'月</option>');
+			}else{
+				option = $('<option value='+i+'>'+i+'月</option>');
+			}
 			select_m.append(option);
 		}
 
-		select_d = $('<select name="data[Calendar][day]"</select>');
+		select_d = $('<select name="data[Calendar][day]"></select>');
 		for (var i=1; i<32; i++){
-			option = $('<option value=' + i + '>' + i +'日</option>');
+			if (mydate.getDate() == i){
+				option = $('<option value=' + i +' selected>' + i + '日</option>');
+			}else{
+				option = $('<option value=' + i + '>' + i +'日</option>');
+			}
 			select_d.append(option);
 		}
 
@@ -109,11 +155,10 @@ var create_select = function create_select(){
 		$('#date_input').append(select_d);
 	}
 
-}
+};
 
 $$('#create_memo').on('submitted', function (e) {
 	alert('create success');
 	window.location.reload();
 });
-
 

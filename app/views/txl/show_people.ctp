@@ -20,32 +20,26 @@
 					            <div class="item-subtitle"><?php echo $Info['position']; ?></div>
 					        </div>
 						</div>	
+						<br />
 						<ul class="table-view">
-							<li class="table-view-cell media">
-								<div class="media-body font_default">
-									部门信息:
-									<label class="margin_content font_p"><?php echo $Info['position'];?> </label>
-								</div>	
-							</li>
-
 							<li class="table-view-cell media">
 								<div class="media-body font_default">
 									微信号码:
 									<label class="margin_content font_p"><?php echo $Info['wechat'];?> </label>
 								</div>
 							</li>
-							<li class="table-view-cell media">
+							<li class="table-view-cell media" style="padding-right: 10px;">
 								<div class="media-body font_default">
 									手机号码:
 									<label class="margin_content font_p"><?php echo $Info['tel'];?> </label>
 
 									
-									<a class="external"  href=<?php echo "tel:".$Info['tel']; ?>>
-										<img  src=<?php echo $this->webroot."img/telphone"?> height="20px" width="20px"
+									<a class="external"  href=<?php echo "tel:".$Info['tel']; ?> style="margin-left:20px;">
+										<img  src=<?php echo $this->webroot."img/telphone.png"?> height="20px" width="40px"
 												style="padding-left:0px;"/>
 									</a>
 									<a class="external"  href=<?php echo "sms:".$Info['tel']; ?>>
-										<img  src=<?php echo $this->webroot."img/message"?> height="20px" width="20px"
+										<img  src=<?php echo $this->webroot."img/message.png"?> height="20px" width="40px"
 												style="padding-left:0px;"/>
 									</a>
 

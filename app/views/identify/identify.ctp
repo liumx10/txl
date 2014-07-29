@@ -1,28 +1,46 @@
-<script language=javascript>
-function checkform()
-{
-	if (document.form1.tel.value == "")
-	{
-		alert("请输入手机号码!!!");
-		return false;
-	}
-	if (document.form1.verfication.value == "")
-	{
-		alert("请输入公司验证码!!!");
-		return false;
-	}
-	return true;
+<head>
+	<title>绑定微信</title>
+</head>
+
+<?php echo $this->Html->css('framework7.min'); ?>
+<style>
+#first-page{
+	background-image:url('../img/fp-background');
+	background-size: cover;
+	width:100%;
+	height:100%;
 }
-</script>
 
-<br />
-<form name=form1 onsubmit="return checkform()" action="verfication" method="post">
-	<label> 手机号码</label>
-	<input type=text value="" name=tel />
+#p1 {
+	margin-top: 40px;
+	margin-left:50%;
+	font-size:1.5em;
+}
 
-	<label> 验证码</label>
-	<input type=text value=""  name=verfication />
-	<input class="btn btn-primary btn-block" type="submit" value="提交" />
-</form>
+#p2 {
+	margin-left:50%;
+	color:#888;
+}
 
-<?php echo $openid; ?>
+#p3 {
+	margin-top:10%;
+	margin-left:65%;
+}
+</style>
+<body >
+<div class="views">
+<div class="view view-main">
+<div class="page no-navbar">
+	<div class="page-content" id="first-page">
+		<p id="p1">微办公</p>
+		<p id="p2">让办公更简单</p>
+		<p id="p3"><a href="#" id="identify_test" class="login-modal">现在开始 </a></p>
+	</div>
+</div>
+</div>
+</div>
+<?php echo $this->Html->script('framework7.min');
+	  echo $this->Html->script('jquery-2.1.1.min');
+	  echo $this->Html->script('my-app'); 
+?>
+</body>

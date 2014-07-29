@@ -5,9 +5,8 @@ class DebugController extends AppController {
 	var $uses = array('Account','Department','Employee');
 	public $components = array('RequestHandler');
 	function debug() {
-		$this->autoRender = false;
-		$this->header('Content-Disposition:attachment;filename="haha.txt"');
-		echo "test";
+		$emp = $this->Employee->get_employee('4');
+		$this->set('data',$emp['name']);
 	}
 }
 ?>

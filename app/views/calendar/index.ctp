@@ -1,3 +1,6 @@
+<head>
+	<title>日程安排</title>
+</head>
 <body onload = "create_select()">
 <?php echo $this->Html->css('framework7.min');
 	echo $this->Html->css('mycss');
@@ -10,11 +13,10 @@
 					<div class="navbar">
 						<div class="navbar-inner">
 							<div class="left">
-								<div onclick="window.history.back()">
+								<a href="../home/home" class="external">
 									<span class="icon icon-left"></span>
-								</div>
+								</a>
 							</div>
-							<div class="center sliding">日程安排</div>		
 							<div class="right">
 								<a href="#" data-popup="#create" class="link open-popup">
 									<span class="icon icon-plus"></span>

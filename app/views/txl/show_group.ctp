@@ -38,7 +38,9 @@
 <?php echo $this->Html->css('framework7.min');
       echo $this->Html->css('mycss');
  ?>
-
+<head>
+	<title>企业通讯录</title>
+</head>
 <body id="body">
   <div class="statusbar-overlay"></div>
   <div class="panel-overplay"></div>
@@ -96,7 +98,7 @@
                           >
 							<div class="item-content">
 								<div class="item-media">
-									<img class="media-object pull-left" src=<?php echo $this->webroot.'headimage/company.head'; ?>
+									<img class="media-object pull-left" style="color:#E6E6E6" src=<?php echo $this->webroot.'img/department.head'; ?>
 										width=40px height=40px />									
 								</div>
 		
@@ -109,14 +111,13 @@
                           </a>
                       </li>
 					  <?php endforeach; ?>
-
-                    </ul>
+					</ul>
                 </div>                
           </div>
-
+		
           <div class="toolbar tabbar tabbar-labels">
             <div class="toolbar-inner">
-				<a class="item-link back external" href=<?php echo $this->Html->url(array('controller'=>'home', 'action'=>'home')); ?>>
+				<a class="item-link back" href=<?php echo $this->Html->url(array('controller'=>'home', 'action'=>'home')); ?>>
                   <i class="icon icon-left" style="color:#A0A0A0"></i>
 				  <span class="tabbar-label">Back</span>
               </a>
