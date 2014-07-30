@@ -16,6 +16,15 @@ var isMobile = {
     }
 };
 
+var loadImage = function loadImage(){
+	alert('hah');
+	if (document.getElementById('load_image').style.display == 'none'){
+		$('#load_image').slideDown();
+	}else{
+		$('#load_image').slideUp();
+	}
+}
+
 var myApp = new Framework7();
 
 var $$ = Framework7.$;
