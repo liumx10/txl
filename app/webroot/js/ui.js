@@ -1,6 +1,5 @@
 function uiContacts(data) {
 //remove all contacts and render from give data
-	console.log(data);
 	contacts = JSON.parse(data);
 	panel = $('#contacts');
 	panel.empty();

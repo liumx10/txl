@@ -63,6 +63,7 @@ echo $this->Html->css('fancytree/skin-lion/ui.fancytree.min');
         </nav>
 
         <div id="page-wrapper">
+<div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                             <div class="panel panel-primary">
@@ -106,7 +107,7 @@ echo $this->Html->css('fancytree/skin-lion/ui.fancytree.min');
                 </div>
 
 <div style="width:100%;padding-bottom:650px;"></div>
-
+</div>
 	 </div>
         <!-- /#page-wrapper -->
 

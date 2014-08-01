@@ -23,14 +23,14 @@ $query = "select * from calendars where realized = 0;";
 
 if ($result = mysqli_query($link, $query)) {
 	while ($row = mysqli_fetch_row($result)) {
-		if (strtotime($row[3]) - $TIME <= $THRESHOLD) {
-			$data['touser'] = $row[5];
-			$data['text']['content'] = "【日程提醒】\n".$row[3].", ".$row[1].",".$row[2];
-			if ($ems = mysqli_query($link, "select * from employee where openid = '".$row[5]."'")) {
+		if (strtotime($row[0]) - $TIME <= $THRESHOLD) {
+			$data['touser'] = $row[1];
+			$data['text']['content'] = "【日程提醒】\n".$row[0].", ".$row[2].",".$row[3];
+			if ($ems = mysqli_query($link, "select * from employee where openid = '".$row[1]."'")) {
 				$emp = mysqli_fetch_row($ems);
 				var_dump($emp);
-				$openid = $emp[1];
-				if ($cms = mysqli_query($link, "select * from company where id = '".$openid."'")) {
+				$com_id = $emp[1];
+				if ($cms = mysqli_query($link, "select * from company where id = '".$com_id."'")) {
 					$com = mysqli_fetch_row($cms);
 					$options = array(
 						'token' => $com[2],
@@ -39,7 +39,7 @@ if ($result = mysqli_query($link, $query)) {
 					);
 					$weObj = new Wechat($options);
 					$weObj->sendCustomMessage($data);
-					mysqli_real_query($link, "update calendars set realized = 1 where openid = '".$row[5]."' && create_time = '".$row[0]."';")."\n";
+					mysqli_real_query($link, "update calendars set realized = 1 where openid = '".$row[1]."' && create_time = '".$row[4]."';")."\n";
 					mysqli_free_result($cms);
 				}
 				mysqli_free_result($ems);

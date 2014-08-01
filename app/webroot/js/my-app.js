@@ -17,7 +17,6 @@ var isMobile = {
 };
 
 var loadImage = function loadImage(){
-	alert('hah');
 	if (document.getElementById('load_image').style.display == 'none'){
 		$('#load_image').slideDown();
 	}else{
@@ -25,11 +24,16 @@ var loadImage = function loadImage(){
 	}
 }
 
-var myApp = new Framework7();
+var myApp = new Framework7({
+modalButtonOk: '确定',
+modalButtonCancel: '取消'
+		});
 
 var $$ = Framework7.$;
 
-var mainView = myApp.addView('.view-main', {dynamicNavbar: true});
+var mainView = myApp.addView('.view-main', 
+		{dynamicNavbar: true,
+		});
 
 
 $$('#identify_test').on('click', function(){
@@ -126,7 +130,7 @@ var create_select = function create_select(){
 	}
 	
 	if (isMobile.iOS()){
-		$('#date_input').append('<input type="date" name="data[Calendar][date]" value="2014-7-28">');
+		$(".ios-style").slideDown();	
 	}else{
 		select_y = $('<select name="data[Calendar][year]" style="width:35%"></select>');
 		var mydate = new Date();
@@ -167,7 +171,8 @@ var create_select = function create_select(){
 };
 
 $$('#create_memo').on('submitted', function (e) {
-	alert('create success');
-	window.location.reload();
+	myApp.alert('创建成功','提示', function(e){
+		window.location.reload();
+	});
 });
 

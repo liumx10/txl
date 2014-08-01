@@ -25,8 +25,13 @@
 
     <div id="edit">
       <div class="list-block media-list">
-        
-        <div class="item-content" onclick="loadImage()">
+</script>
+		<div class="item-content" onclick='if(document.getElementById("load_image").style.display == "none"){
+												$("#load_image").slideDown();
+											}else{
+												$("#load_image").slideUp();
+											}
+											'>
           <div class="intem-media">
              <?php echo $this->Html->image('../headimage/'.$photoid, 
                         array('width'=>'70px', 'height'=>'70px'));?>
@@ -53,7 +58,7 @@
                   <div class="item-title label">电话</div>
                   <div class="item-input">
                     <!-- Make sure that input have "name attrobute" -->
-                    <input type="text" id="tel" placeholder="tel">
+                    <input type="text" id="tel" placeholder="手机">
                   </div>
                 </div>
               </div>
@@ -65,7 +70,7 @@
                   <div class="item-title label">微信</div>
                   <div class="item-input">
                     <!-- Make sure that input have "name attrobute" -->
-                    <input type="text" id="wechat" placeholder="wechat">
+                    <input type="text" id="wechat" placeholder="微信">
                   </div>
                 </div>
               </div>
@@ -74,10 +79,10 @@
             <li>
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-title label">E-mail</div>
+                  <div class="item-title label">邮箱</div>
                   <div class="item-input">
                     <!-- Make sure that input have "name attrobute" -->
-                    <input type="text" id="email" placeholder="E-mail">
+                    <input type="text" id="email" placeholder="邮箱">
                   </div>
                 </div>
               </div>

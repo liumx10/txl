@@ -3,7 +3,7 @@
     </div>
 </div>
 
-<div data-page="home" class="page no-navbar">
+<div data-page="home" class="page">
   <!-- Search bar -->
   <form data-search-list=".list-block-search" data-search-in=".item-title" class="searchbar">
     <div class="searchbar-input" style="width:80%; margin-right:5px;">

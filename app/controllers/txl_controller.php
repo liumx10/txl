@@ -80,11 +80,10 @@ class TxlController extends AppController{
 		if (empty($companyid)){
 			$companyid = $person['com_id'];			
 		}
-		$this->log($companyid, LOG_DEBUG);
 		$this->set("companyid", $companyid);
 		$this->set('myid', $myid);
 		
-		$this->set('employees', $this->Employee->get_all_employee($companyid));			
+		$this->set('employees', $this->Employee->get_all_employee(2));			
 	}
 
 	function search_branch($department_id, $name){

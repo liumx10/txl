@@ -21,17 +21,24 @@
 					        </div>
 						</div>	
 						<br />
+						
+						<style>
+							.table-view .media-body .margin_content{
+								margin-left: 10px;
+								font-size:0.9em;
+							}
+						</style>
 						<ul class="table-view">
 							<li class="table-view-cell media">
-								<div class="media-body font_default">
+								<div class="media-body ">
 									微信号码:
-									<label class="margin_content font_p"><?php echo $Info['wechat'];?> </label>
+									<label class="margin_content"><?php echo $Info['wechat'];?> </label>
 								</div>
 							</li>
 							<li class="table-view-cell media" style="padding-right: 10px;">
-								<div class="media-body font_default">
+								<div class="media-body ">
 									手机号码:
-									<label class="margin_content font_p"><?php echo $Info['tel'];?> </label>
+									<label class="margin_content "><?php echo $Info['tel'];?> </label>
 
 									
 									<a class="external"  href=<?php echo "tel:".$Info['tel']; ?> style="margin-left:20px;">
@@ -46,15 +53,15 @@
 								</div>
 							</li>
 							<li class="table-view-cell media">
-								<div class="media-body font_default">
+								<div class="media-body ">
 									电子邮箱:
-									<label class="margin_content font_p"><?php echo $Info['email'];?> </label>
+									<label class="margin_content"><?php echo $Info['email'];?> </label>
 								</div>
 							</li>
 							<li class="table-view-cell media">
 								<a class"navigate-right" href=<?php echo $this->Html->url(array(
 												'controller'=>'txl', 'action'=>'show_sign', $Info['id'])); ?>>
-									<div class="media-body font_default">
+									<div class="media-body ">
 										签到记录
 									</div>
 									<span class="navigate-right"> </span>
@@ -69,7 +76,7 @@
 					  
 				      <a class="item-link back" >
 				          <span class="icon icon-left"></span>
-					  <span class="tabbar-label">Back</span>
+					  <span class="tabbar-label">返回</span>
 				      </a>
 
 				      <!-- Search people by name -->
@@ -80,7 +87,7 @@
 				              ?>
 				      >
 				          <span class="icon icon-search"></span>
-					  <span class="tabbar-label">Search</span>			      </a>
+					  <span class="tabbar-label">搜索</span>			      </a>
 					
 				      <a class="item-link" href=<?php echo $this->Html->url(
 				              array( "controller" => "home",
@@ -88,7 +95,7 @@
 				                      ?>
 				      >
 				          <span class="icon icon-home"></span>
-					  <span class="tabbar-label">Home</span>			    
+					  <span class="tabbar-label">主页</span>			    
 				      </a>
 				      
 
@@ -98,14 +105,14 @@
 										echo $this->Html->url(array('action'=>'edit'));?>
 							>
 							  <span class="icon icon-compose"></span>
-							  <span class="tabbar-label">Edit</span>					
+							  <span class="tabbar-label">编辑</span>					
 						</a>
 				      <?php }else{ ?>
 				      		<a class="item-link" href=<?php 
 					      			echo $this->Html->url(array('action'=>'show_people', $myid));?>
 							>
 							  <span class="icon icon-person"></span>
-  							  <span class="tabbar-label">Myself</span
+  							  <span class="tabbar-label">自己</span
 >						</a>
 					  <?php } ?>
 

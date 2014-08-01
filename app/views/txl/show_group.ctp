@@ -1,40 +1,6 @@
 <?php echo $this->Html->script("jquery-2.1.1.min"); ?>
 <?php echo $this->Html->script("touchwipe"); ?>
 
-<script>
-      $(document).ready(function(){
-        var tab=1;
-        var companyid = <?php echo $department['id']; ?>;
-        checkout = function checkout(j){
-  	      tab = j;
-	  var tabnum = '#tab'+j+companyid;
-	  var myApp = new Framework7();
-	  myApp.showTab(tabnum);
-        }
-
-  	  $("#body").touchwipe({
-      		wipeRight:function(){
-      			tab = tab - 1;
-      			if (tab < 1){
-      				tab = 1;	
-      			}	
-      			checkout(tab);
-      		},
-      		wipeLeft:function(){
-      			tab = tab + 1;
-      			if (tab > 2){
-      				tab = 2;
-      			}
-      			checkout(tab);
-      		},
-      				
-      		min_mov_x:5,
-      		preventDefaultEvent:false
-          });
-      });
-
-</script>
-
 <?php echo $this->Html->css('framework7.min');
       echo $this->Html->css('mycss');
  ?>
@@ -119,7 +85,7 @@
             <div class="toolbar-inner">
 				<a class="item-link back" href=<?php echo $this->Html->url(array('controller'=>'home', 'action'=>'home')); ?>>
                   <i class="icon icon-left" style="color:#A0A0A0"></i>
-				  <span class="tabbar-label">Back</span>
+				  <span class="tabbar-label">返回</span>
               </a>
 
               <!-- Search people by name -->
@@ -130,7 +96,7 @@
                       ?>
               >
                   <i class="icon icon-search"></i>
-				  <span class="tabbar-label">Search</span>
+				  <span class="tabbar-label">搜索</span>
              </a>
           
               <a class="item-link external" href=<?php echo $this->Html->url(
@@ -139,14 +105,14 @@
 							  ?>
               >
                   <span class="icon icon-home"></span>
-		 		  <span class="tabbar-label">Home</span>
+		 		  <span class="tabbar-label">主页</span>
              </a>
         
               <a class="item-link" href=<?php 
                 echo $this->Html->url(array('action'=>'show_people', $myid));?>
               >
 				 <span class="icon icon-person"></span>	 
-				 <span class="tabbar-label">Myself</span>
+				 <span class="tabbar-label">自己</span>
               </a>
             </div>
           </div>

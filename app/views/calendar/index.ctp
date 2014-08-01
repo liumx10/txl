@@ -74,13 +74,16 @@
 			<div class="pages">
 				<div class="page">
 					<div class="page-content">
-						<form action="save_info" method="POST" id='create_memo' class="list-block ajax-submit"">
+						<form action="save_info" method="POST" id='create_memo' class="list-block ajax-submit">
 							<ul>
 								<li>
 									<div class="item-content">
 										<div class="item-inner">
 											<div class="item-title label">日期</div>
-											<div class="item-input" id="date_input">
+											<div class="ios-style" style="display:none">
+												<input type="date" name="data[Calendar][date]" value="2014-7-31" />
+											</div>
+											<div class="android-style item-input" id="date_input">
 											</div>
 										</div>
 									</div>
@@ -103,7 +106,7 @@
 										<div class="item-inner">
 											<div class="item-title label">地点</div>
 											<div class="item-input">
-												<input type="text" name='data[Calendar][place]' placeholder="place">
+												<input type="text" name='data[Calendar][place]' placeholder="地点">
 											</div>
 										</div>
 									</div>
@@ -113,7 +116,7 @@
 										<div class="item-inner">
 											<div class="item-title label">事件</div>
 											<div class="item-input">
-												<textarea name='data[Calendar][memo]' placeholder="your message"></textarea>
+												<textarea name='data[Calendar][memo]' placeholder="备忘录"></textarea>
 											</div>
 										</div>
 									</div>
@@ -122,7 +125,7 @@
 									<div class="item-content">
 										<div class="item-inner">
 											<div class="item-input">
-													<input type="submit" class="button" value="Submit">
+													<input type="submit" class="button" value="提交">
 											</div>
 										</div>
 									</div>
